@@ -26,7 +26,7 @@
 
 			<div class="d-flex">
 				<h3 class="title-content">Lista de Estados</h3>
-				<a th:href="@{/estados/new}" class="btn btn-warning">Nuevo</a>
+				<a th:href="@{/estadoss/new}" class="btn btn-warning">Nuevo</a>
 			</div>
 			<table class="table">
 				<thead class="thead-light">
@@ -36,9 +36,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="cat : ${listaEstados}">
-						<td class="text-center" th:text="${cat.cEstados}"></td>
-						<td class="text-center" th:text="${cat.nnombreestados}"></td>
+					<tr th:each="es : ${listaEstados}">
+						<td class="text-center" th:text="${es.cEstados}"></td>
+						<td class="text-center" th:text="${es.nameEstados}"></td>
 					</tr>
 				</tbody>
 			</table>
