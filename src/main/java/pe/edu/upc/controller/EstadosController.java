@@ -15,22 +15,22 @@ import pe.edu.upc.entities.Estados;
 import pe.edu.upc.serviceinterface.IEstadosService;
 
 @Controller
-@RequestMapping("/estadoss")
+@RequestMapping("/estados")
 public class EstadosController {
 	@Autowired
-	private IEstadosService cService;
+	private IEstadosService cEstados;
 	
 	@GetMapping("/new")
-	public String newEstados(Model model) {
-		model.addAttribute("estados", new Estados());
-		return "estados/estados";
+	public String newCategory(Model model) {
+		model.addAttribute("category", new Estados());
+		return "category/category";
 	}
 	
 	@GetMapping("/list")
 	public String listEstados(Model model) {
 		try {
 			model.addAttribute("estados", new Estados());
-			model.addAttribute("listaEstados", cService.list());
+			model.addAttribute("listaEstados", cEstados.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
@@ -43,7 +43,7 @@ public class EstadosController {
 		if (result.hasErrors()) {
 			return "estados/estados";
 		} else {
-			int rpta = cService.insert(estados);
+			int rpta = cEstados.insert(estados);
 			if (rpta > 0) {
 				model.addAttribute("mensaje", "Ya existe");
 				return "estados/estados";
@@ -53,7 +53,7 @@ public class EstadosController {
 			}
 		}
 		model.addAttribute("estados", new Estados());
-		return "redirect:/estadoss/list";
+		return "redirect:/estados/list";
 	}
 
 }

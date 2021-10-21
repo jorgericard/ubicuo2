@@ -15,17 +15,17 @@ public class Estados {
 	private int cEstados;
 	
 	@Column(name="nameEstados", length=35, nullable=false)
-	private String nameEstados;
+	private String nnombreestados;
 
 	public Estados() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Estados(int cEstados, String nameEstados) {
+	public Estados(int cEstados, String nnombreestados) {
 		super();
 		this.cEstados = cEstados;
-		this.nameEstados = nameEstados;
+		this.nnombreestados = nnombreestados;
 	}
 
 	public int getcEstados() {
@@ -36,12 +36,11 @@ public class Estados {
 		this.cEstados = cEstados;
 	}
 
-	public String getNameEstados() {
-		return nameEstados;
+	public String getNnombreestados() {
+		return nnombreestados;
 	}
 
-	public void setNameEstados(String nameEstados) {
-		this.nameEstados = nameEstados;
+	public void setNnombreestados(String nnombreestados) {
+		this.nnombreestados = nnombreestados;
 	}
-
 }
