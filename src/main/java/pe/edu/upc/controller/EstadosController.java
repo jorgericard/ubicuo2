@@ -15,15 +15,15 @@ import pe.edu.upc.entities.Estados;
 import pe.edu.upc.serviceinterface.IEstadosService;
 
 @Controller
-@RequestMapping("/estados")
+@RequestMapping("/estadoss")
 public class EstadosController {
 	@Autowired
 	private IEstadosService cEstados;
 	
 	@GetMapping("/new")
 	public String newCategory(Model model) {
-		model.addAttribute("category", new Estados());
-		return "category/category";
+		model.addAttribute("estados", new Estados());
+		return "estados/estados";
 	}
 	
 	@GetMapping("/list")
