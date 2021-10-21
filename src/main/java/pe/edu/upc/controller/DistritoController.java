@@ -41,7 +41,7 @@ public class DistritoController {
 	public String saveMarca(@Valid Distrito distrito, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
-			return "category/category";
+			return "distrito/distrito";
 		} else {
 			int rpta = dS.insert(distrito);
 			if (rpta > 0) {
@@ -52,7 +52,7 @@ public class DistritoController {
 				status.setComplete();
 			}
 		}
-		model.addAttribute("category", new Distrito());
+		model.addAttribute("distrito", new Distrito());
 		return "redirect:/distritos/list";
 	}
 }
