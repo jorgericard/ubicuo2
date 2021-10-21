@@ -18,7 +18,7 @@ public class TipoServicioServiceImplement implements ITipoServicioService{
 	@Override
 	public Integer insert(TipoServicio tiposervicio) {
 		// TODO Auto-generated method stub
-		int rpta = tR.TipoServicioExistentes(tiposervicio.getNameTipoServicio());
+		int rpta = tR.TipoServicioExistentes(tiposervicio.getNameTiposervicio());
 		if (rpta == 0) {
 			tR.save(tiposervicio);
 		}

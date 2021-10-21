@@ -9,44 +9,49 @@ import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
 @Entity
-@Table(name = "tiposervicio")
+@Table(name = "tiposervicios")
 public class TipoServicio {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idTipoServicio;
+	private int idTiposervicio;
 	
 	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Tipo de Servicio no puede contener caracteres especiales")
 	@Pattern(regexp = "[^0-9]+", message = "El nombre del Tipo de Servicio no puede contener un número")
-	@Column(name = "nameTipoServicio", length = 35, nullable = false)
-	private String nameTipoServicio;
+	@Column(name = "nameTiposervicio", length = 35, nullable = false)
+	private String nameTiposervicio;
 
 	public TipoServicio() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public TipoServicio(int idTipoServicio, String nameTipoServicio) {
+	public TipoServicio(int idTiposervicio, String nameTiposervicio) {
 		super();
-		this.idTipoServicio = idTipoServicio;
-		this.nameTipoServicio = nameTipoServicio;
+		this.idTiposervicio = idTiposervicio;
+		this.nameTiposervicio = nameTiposervicio;
 	}
 
-	public int getIdTipoServicio() {
-		return idTipoServicio;
+	public int getIdTiposervicio() {
+		return idTiposervicio;
 	}
 
-	public void setIdTipoServicio(int idTipoServicio) {
-		this.idTipoServicio = idTipoServicio;
+
+	public void setIdTiposervicio(int idTiposervicio) {
+		this.idTiposervicio = idTiposervicio;
 	}
 
-	public String getNameTipoServicio() {
-		return nameTipoServicio;
+
+	public String getNameTiposervicio() {
+		return nameTiposervicio;
 	}
 
-	public void setNameTipoServicio(String nameTipoServicio) {
-		this.nameTipoServicio = nameTipoServicio;
+
+	public void setNameTiposervicio(String nameTiposervicio) {
+		this.nameTiposervicio = nameTiposervicio;
 	}
+
+
 	
 	
 }

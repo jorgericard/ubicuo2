@@ -10,7 +10,7 @@ import pe.edu.upc.entities.TipoServicio;
 @Repository
 public interface ITipoServicioRepository extends JpaRepository<TipoServicio, Integer>{
 
-	@Query("select count(t.nameTipoServicio) from TipoServicio t where t.nameTipoServicio=:name")
+	@Query("select count(t.nameTiposervicio) from TipoServicio t where t.nameTiposervicio=:name")
 	public int TipoServicioExistentes(@Param("name") String nombre);
 	
 }
