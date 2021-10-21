@@ -18,7 +18,7 @@ public class EstadosServiceImplement implements IEstadosService{
 	@Override
 	public Integer insert(Estados estados) {
 		// TODO Auto-generated method stub
-		int rpta=cR.categoriasExistentes(estados.getNameEstados());
+		int rpta=cR.estadosExistentes(estados.getNameEstados());
 		if(rpta==0) {
 			cR.save(estados);
 		}
