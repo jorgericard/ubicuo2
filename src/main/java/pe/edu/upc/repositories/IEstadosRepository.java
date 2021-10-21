@@ -9,7 +9,7 @@ import pe.edu.upc.entities.Estados;
 
 @Repository
 public interface IEstadosRepository extends JpaRepository<Estados, Integer>{
-	@Query("select count(c.nnombreestados) from Estados c where c.nnombreestados=:name")
+	@Query("select count(c.nameEstados) from Estados c where c.nameEstados=:name")
 	public int categoriasExistentes(@Param("name") String nombre);
 
 }
