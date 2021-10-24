@@ -97,7 +97,7 @@ public class ServicioController {
 				return "redirect:/servicios/list";
 			} else {
 				model.addAttribute("mensaje", "Ocurrió un error");
-				return "redirect:/servicios/new";
+				return "redirect:/servicios/list";
 			}
 		}
 	}

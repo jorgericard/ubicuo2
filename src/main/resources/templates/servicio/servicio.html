@@ -67,11 +67,11 @@
 
 
 						<div class="form-group">
-							<label for="tipoServicio">TIPOSERVICIO:</label> <select
-								class="form-control" th:field="*{tipoServicio.idTipoServicio}">
+							<label for="tiposervicio">TIPOSERVICIO:</label> <select
+								class="form-control" th:field="*{tipoServicio.idTiposervicio}">
 								<option th:each="s: ${listaTipoServicios}"
-									th:value="${s.idTipoServicio}" th:text="${s.nameTipoServicio}"
-									th:selected="(${s.idTipoServicio} == *{tipoServicio.idTipoServicio})"></option>
+									th:value="${s.idTiposervicio}" th:text="${s.nameTiposervicio}"
+									th:selected="(${s.idTiposervicio} == *{tipoServicio.idTiposervicio})"></option>
 							</select>
 						</div>
 
