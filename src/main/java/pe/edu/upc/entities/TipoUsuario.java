@@ -16,8 +16,8 @@ public class TipoUsuario
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idTipoUsuario;
 	
-	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Distrito no puede contener un número")
-	@Pattern(regexp = "[^0-9]+", message = "El nombre del Distrito no puede contener un número")
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del TipoUsuario no puede contener un número")
+	@Pattern(regexp = "[^0-9]+", message = "El nombre del TipoUsuario no puede contener un número")
 	@Column(name = "nameTipoUsuario", length = 35, nullable = false)
 	private String nameTipoUsuario;
 

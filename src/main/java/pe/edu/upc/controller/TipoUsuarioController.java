@@ -15,48 +15,48 @@ import pe.edu.upc.entities.TipoUsuario;
 import pe.edu.upc.serviceinterface.ITipoUsuarioService;
 
 @Controller
-@RequestMapping("/TipoUsuarios")
+@RequestMapping("/tipousuarios")
 public class TipoUsuarioController 
 {
 	@Autowired
 	private ITipoUsuarioService cS;
 	
 	@GetMapping("/new")
-	public String newTipoUsuario(Model model) 
+	public String newtipousuario(Model model) 
 	{
-		model.addAttribute("TipoUsuario", new TipoUsuario());
-		return "TipoUsuario/TipoUsuario";
+		model.addAttribute("tipousuario", new TipoUsuario());
+		return "tipousuario/tipousuario";
 	}
 	
 	@GetMapping("/list")
-	public String listTipoUsuarios(Model model) 
+	public String listtipousuarios(Model model) 
 	{
 		try 
 		{
-			model.addAttribute("TipoUsuario", new TipoUsuario());
+			model.addAttribute("tipousuario", new TipoUsuario());
 			model.addAttribute("listaTipoUsuarios", cS.list());
 		} 
 		catch (Exception e) 
 		{
 			model.addAttribute("error", e.getMessage());
 		}
-		return "TipoUsuario/listTipoUsuarios";
+		return "tipousuario/listTipoUsuarios";
 	}
 	
 	@PostMapping("/save")
-	public String saveMarca(@Valid TipoUsuario TipoUsuario, BindingResult result, Model model, SessionStatus status) throws Exception 
+	public String saveMarca(@Valid TipoUsuario tipousuario, BindingResult result, Model model, SessionStatus status) throws Exception 
 	{
 		if (result.hasErrors()) 
 		{
-			return "TipoUsuario/TipoUsuario";
+			return "tipousuario/tipousuario";
 		} 
 		else 
 		{
-			int rpta = cS.insert(TipoUsuario);
+			int rpta = cS.insert(tipousuario);
 			if (rpta > 0) 
 			{
 				model.addAttribute("mensaje", "Ya existe");
-				return "TipoUsuario/TipoUsuario";
+				return "tipousuario/tipousuario";
 			} 
 			else 
 			{
@@ -64,7 +64,7 @@ public class TipoUsuarioController
 				status.setComplete();
 			}
 		}
-		model.addAttribute("TipoUsuario", new TipoUsuario());
-		return "redirect:/TipoUsuarios/list";
+		model.addAttribute("tipousuario", new TipoUsuario());
+		return "redirect:/tipousuarios/list";
 	}
 }
