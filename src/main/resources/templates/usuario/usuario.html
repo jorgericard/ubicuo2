@@ -37,8 +37,8 @@
 							readonly th:field="*{idUsuario}"></input>
 
 						<div class="form-group">
-							<label for="nombre">NOMBRE:</label> <input type="text" required
-								th:field="*{nameUsuario}" class="form-control" id="nombre"></input>
+							<label for="nombre_apellido">NOMBRE:</label> <input type="text" required
+								th:field="*{nameUsuario}" class="form-control" id="nombre_apellido"></input>
 							<div class="alert alert-danger"
 								th:if="${#fields.hasErrors('nameUsuario')}"
 								th:errors="*{nameUsuario}"></div>
