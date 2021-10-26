@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entities.Usuario;
+import pe.edu.upc.serviceinterface.ICargoService;
+import pe.edu.upc.serviceinterface.IServicioService;
+import pe.edu.upc.serviceinterface.ITipoUsuarioService;
+import pe.edu.upc.serviceinterface.IUbicacionService;
 import pe.edu.upc.serviceinterface.IUsuarioService;
 
 @Controller
@@ -20,11 +24,29 @@ import pe.edu.upc.serviceinterface.IUsuarioService;
 public class UsuarioController 
 {
 	@Autowired
-	private IUsuarioService cS;
+	private IUsuarioService usS;
+	
+	@Autowired
+	private ITipoUsuarioService iS;
+	
+	@Autowired
+	private IUbicacionService ubS;
+	
+	@Autowired
+	private ICargoService cS;
+	
+	@Autowired
+	private IServicioService sS;
 	
 	@GetMapping("/new")
 	public String newusuario(Model model) 
 	{
+		model.addAttribute("usuario", new Usuario());
+		model.addAttribute("listaUsuarios", usS.list());
+		model.addAttribute("listatipousuarios", iS.list());
+		model.addAttribute("listaubicacion", ubS.list());
+		model.addAttribute("listacargo", cS.list());
+		model.addAttribute("listaservicio", sS.list());
 		model.addAttribute("usuario", new Usuario());
 		return "usuario/usuario";
 	}
@@ -35,7 +57,7 @@ public class UsuarioController
 		try 
 		{
 			model.addAttribute("usuario", new Usuario());
-			model.addAttribute("listaUsuarios", cS.list());
+			model.addAttribute("listaUsuarios", usS.list());
 		} 
 		catch (Exception e) 
 		{
@@ -53,7 +75,7 @@ public class UsuarioController
 		} 
 		else 
 		{
-			int rpta = cS.insert(usuario);
+			int rpta = usS.insert(usuario);
 			if (rpta > 0) 
 			{
 				model.addAttribute("mensaje", "Ya existe");

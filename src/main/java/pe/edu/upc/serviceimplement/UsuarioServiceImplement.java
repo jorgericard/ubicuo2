@@ -10,7 +10,8 @@ import pe.edu.upc.repositories.IUsuarioRepository;
 import pe.edu.upc.serviceinterface.IUsuarioService;
 
 @Service
-public class UsuarioServiceImplement implements IUsuarioService {
+public class UsuarioServiceImplement implements IUsuarioService 
+{
 	@Autowired
 	private IUsuarioRepository cR;
 	
