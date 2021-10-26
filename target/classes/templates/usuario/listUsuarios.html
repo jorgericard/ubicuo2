@@ -32,13 +32,27 @@
 				<thead class="thead-light">
 					<tr>
 						<th scope="col" class="text-center">Código</th>
-						<th scope="col" class="text-center">Nombre_Apellido</th>
+						<th scope="col" class="text-center">Nombre y Apellido</th>
+						<th scope="col" class="text-center">Contraseña</th>
+						<th scope="col" class="text-center">Correo</th>
+						<th scope="col" class="text-center">DNI</th>
+						<th scope="col" class="text-center">Tipo usuario</th>
+						<th scope="col" class="text-center">Ubicación</th>
+						<th scope="col" class="text-center">Cargo</th>
+						<th scope="col" class="text-center">Servicio</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="cat : ${listaUsuarios}">
 						<td class="text-center" th:text="${cat.idUsuario}"></td>
 						<td class="text-center" th:text="${cat.nameUsuario}"></td>
+						<td class="text-center" th:text="${cat.password}"></td>
+						<td class="text-center" th:text="${cat.correo}"></td>
+						<td class="text-center" th:text="${cat.dni}"></td>
+						<td class="text-center" th:text="${cat.tiposusuario.nameTipoUsuario}"></td>
+						<td class="text-center" th:text="${cat.ubicacion.nlongitud}"></td>
+						<td class="text-center" th:text="${cat.cargo.nameCargo}"></td>
+						<td class="text-center" th:text="${cat.servicio.nameServicio}"></td>
 					</tr>
 				</tbody>
 			</table>
