@@ -46,6 +46,7 @@ public class TipoServicioController {
 		} else {
 			int rpta = tS.insert(tiposervicio);
 			if (rpta > 0) {
+				model.addAttribute("tiposervicio",tiposervicio);
 				model.addAttribute("mensaje", "Ya existe");
 				return "tiposervicio/tiposervicio";
 			} else {
