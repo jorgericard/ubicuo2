@@ -42,6 +42,8 @@ public class TipoServicioController {
 	public String saveTipoServicio(@Valid TipoServicio tiposervicio, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
+			model.addAttribute("tiposervicio",tiposervicio);
+			model.addAttribute("mensaje", "El nombre del Tipo de Servicio no puede contener un número o caracter");
 			return "tiposervicio/tiposervicio";
 		} else {
 			int rpta = tS.insert(tiposervicio);
