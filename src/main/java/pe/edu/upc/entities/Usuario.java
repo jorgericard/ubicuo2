@@ -18,7 +18,7 @@ public class Usuario
 	
 	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Usuario no puede contener un número")
 	@Pattern(regexp = "[^0-9]+", message = "El nombre del Usuario no puede contener un número")
-	@Column(name = "nameUsuario", length = 35, nullable = false)
+	@Column(name = "nombre_apellidoUsuario", length = 35, nullable = false)
 	private String nameUsuario;
 
 	public Usuario() 
