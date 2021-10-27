@@ -2,6 +2,7 @@ package pe.edu.upc.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "alertas")
@@ -30,6 +35,9 @@ public class Alerta {
 	@JoinColumn(name = "idUsuarioRes", nullable = true)
 	private Usuario idUsuarioRes;
 
+    @Column(name = "hire_date")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @Temporal(TemporalType.DATE)
 	private Date fecha;
 
 	public Alerta() {
