@@ -1,6 +1,5 @@
 package pe.edu.upc.controller;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.ParseException;
 import java.util.Map;
@@ -18,9 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.multipart.MultipartFile;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -66,41 +64,27 @@ public class ServicioController {
 		return "servicio/listServicios";
 	}
 	@RequestMapping("/save")
-	public String insertProduct(@ModelAttribute @Valid Servicio servicio, BindingResult binRes, Model model,
-			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status)
+	public String insertProduct(@Valid Servicio servicio, BindingResult binRes, Model model,
+			 SessionStatus status)
 			throws ParseException {
 		if (binRes.hasErrors()) {
 			model.addAttribute("listaDistritos", dService.list());
 			model.addAttribute("listaTipoServicios", tService.list());
 			return "servicio/servicio";
 		} else {
-			if (!foto.isEmpty()) {
-
-				if (servicio.getIdServicio() > 0 && servicio.getPhotoServicio() != null
-						&& servicio.getPhotoServicio().length() > 0) {
-
-					uploadFileService.delete(servicio.getPhotoServicio());
-				}
-
-				String uniqueFilename = null;
-				try {
-					uniqueFilename = uploadFileService.copy(foto);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-
-				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
-				servicio.setPhotoServicio(uniqueFilename);
-			}
-			boolean flag = sService.insert(servicio);
-			if (flag) {
-				return "redirect:/servicios/list";
+			int rpta = sService.insert(servicio);
+			if (rpta > 0) {
+				model.addAttribute("mensaje", "Ya existe");
+				return "servicio/servicio";
 			} else {
-				model.addAttribute("mensaje", "Ocurrió un error");
-				return "redirect:/servicios/list";
+				model.addAttribute("mensaje", "Se guardó correctamente");
+				status.setComplete();
 			}
 		}
+		model.addAttribute("servicio", new Servicio());
+		return "redirect:/servicios/list";
 	}
+
 	@GetMapping(value = "/uploads/{filename:.+}")
 	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
 

@@ -23,69 +23,71 @@
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
 		<div class="content container row col-12">
-			<div class="col-6">
-				<h3>Registrar Servicio</h3>
-				<img class="imgform" alt="" th:src="@{/img/form/producto.png}">
+			<div class="col-1">
+				<h3></h3>
 			</div>
-			<div class="col-6 frm-registro">
-				<form th:action="@{/servicios/save}" method="post" class="row"
-					th:object="${servicio}" enctype="multipart/form-data">
+			<div class="col-3">
+				<h3>Registrar Alerta</h3>
+			</div>
+			<div class="col-8 frm-registro">
+				<form th:action="@{/alertas/save}" method="post"
+					th:object="${alerta}">
+					<div class="form-group">
 
-					<div class="col-6">
-						<div class="form-group">
-							<label for="idrace">ID:</label> <input type="text" readonly
-								class="form-control" th:field="*{idServicio}"></input>
-						</div>
-
-						<div class="form-group">
-							<label for="nombre">NOMBRE:</label> <input type="text" required
-								th:field="*{nameServicio}" class="form-control" id="nombre"></input>
-						</div>
-						<div class="alert alert-danger"
-							th:if="${#fields.hasErrors('nameServicio')}"
-							th:errors="*{nameServicio}"></div>
+						<label>ID:</label> <input type="text" class="form-control"
+							readonly th:field="*{idAlerta}"></input> <br />
 
 						<div class="form-group">
-							<label for="direccion">Direccion:</label> <input type="text" required
-								th:field="*{direccionServicio}" class="form-control" id="direccion"></input>
-						</div>
-						<div class="alert alert-danger"
-							th:if="${#fields.hasErrors('direccionServicio')}"
-							th:errors="*{direccionServicio}"></div>
-					</div>
-
-					<div class="col-6">
-						<div class="form-group">
-							<label for="distrito">DISTRITO:</label> <select
-								class="form-control" th:field="*{distrito.idDistrito}">
-								<option th:each="c: ${listaDistritos}"
-									th:value="${c.idDistrito}" th:text="${c.nameDistrito}"
-									th:selected="(${c.idDistrito} == *{distrito.idDistrito})"></option>
+							<label for="estado">Estado:</label> <select class="form-control"
+								th:field="*{cEstados.cEstados}">
+								<option th:each="t: ${listaEstados}" th:value="${t.cEstados}"
+									th:text="${t.nameEstados}"
+									th:selected="(${t.cEstados} == *{cEstados.cEstados})"></option>
 							</select>
 						</div>
 
-
+						<br />
 
 						<div class="form-group">
-							<label for="tiposervicio">TIPOSERVICIO:</label> <select
-								class="form-control" th:field="*{tipoServicio.idTiposervicio}">
-								<option th:each="s: ${listaTipoServicios}"
-									th:value="${s.idTiposervicio}" th:text="${s.nameTiposervicio}"
-									th:selected="(${s.idTiposervicio} == *{tipoServicio.idTiposervicio})"></option>
+							<label for="ubicacion">Usuario Auxiliador:</label> <select
+								class="form-control" th:field="*{idUsuarioAux.idUsuario}">
+								<option th:each="u: ${listaUsuariosAux}"
+									th:value="${u.idUsuario}" th:text="${u.nameUsuario}"
+									th:selected="(${u.idUsuario} == *{idUsuarioAux.idUsuario})"></option>
 							</select>
 						</div>
 
+						<br />
 
+						<div class="form-group">
+							<label for="ubicacion">Usuario Rescatista:</label> <select
+								class="form-control" th:field="*{idUsuarioRes.idUsuario}">
+								<option th:each="u: ${listaUsuariosRes}"
+									th:value="${u.idUsuario}" th:text="${u.nameUsuario}"
+									th:selected="(${u.idUsuario} == *{idUsuarioRes.idUsuario})"></option>
+							</select>
+						</div>
 
-					
+						<br />
+						
+						<div class="form-group row">
+                                <label for="fecha" class="col-sm-2 col-form-label">Fecha:</label>
+                                <div class="col-sm-6">
+                                    <div class="input-group date">
+                                        <input type="date" class="form-control" id="fecha" autocomplete="off" th:field="*{{fecha}}"/>
+                                    </div>
+                                    <small
+                                        class="form-text text-danger"
+                                        th:if="${#fields.hasErrors('fecha')}"
+                                        th:errors="*{fecha}"></small>
+                                </div>
+                            </div>
 
 					</div>
+					<button type="submit" class="btn btn-warning">Aceptar</button>
+					<a href="/alertas/list" class="btn btn-light">Cancelar</a>
 
-					<button style="margin: 0px 30px;" type="submit"
-						class="btnadd btn btn-primary">Aceptar</button>
-					<a href="/servicios/list" class="btn btn-danger">Cancelar</a>
 				</form>
-
 				<div th:if="${mensaje}" class="alert alert-danger">
 					<p th:text="${mensaje}"></p>
 				</div>

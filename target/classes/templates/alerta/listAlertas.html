@@ -25,42 +25,26 @@
 		<div class="content container">
 
 			<div class="d-flex">
-				<h3 class="title-content">Lista de Usuarios</h3>
-				<a th:href="@{/usuarios/new}" class="btn btn-warning">Nuevo</a>
+				<h3 class="title-content">Lista de Alertas</h3>
+				<a th:href="@{/alertas/new}" class="btn btn-warning">Nuevo</a>
 			</div>
 			<table class="table">
 				<thead class="thead-light">
 					<tr>
 						<th scope="col" class="text-center">Código</th>
-						<th scope="col" class="text-center">Nombre y Apellido</th>
-						<th scope="col" class="text-center">Contraseña</th>
-						<th scope="col" class="text-center">Correo</th>
-						<th scope="col" class="text-center">DNI</th>
-						<th scope="col" class="text-center">Tipo usuario</th>
-						<th scope="col" class="text-center">Ubicación</th>
-						<th scope="col" class="text-center">Cargo</th>
-						<th scope="col" class="text-center">Servicio</th>
-						<th scope="col" class="text-center">OPERACIÓN</th>
-						<th scope="col" class="text-center">DETALLE</th>
+						<th scope="col" class="text-center">Estado</th>
+						<th scope="col" class="text-center">Usuario Auxiliador</th>
+						<th scope="col" class="text-center">Usuario Rescatista</th>
+						<th scope="col" class="text-center">Fecha</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="cat : ${listaUsuarios}">
-						<td class="text-center" th:text="${cat.idUsuario}"></td>
-						<td class="text-center" th:text="${cat.nameUsuario}"></td>
-						<td class="text-center" th:text="${cat.password}"></td>
-						<td class="text-center" th:text="${cat.correo}"></td>
-						<td class="text-center" th:text="${cat.dni}"></td>
-						<td class="text-center" th:text="${cat.tiposusuario.nameTipoUsuario}"></td>
-						<td class="text-center" th:text="${cat.ubicacion.nlongitud}"></td>
-						<td class="text-center" th:text="${cat.cargo.nameCargo}"></td>
-						<td class="text-center" th:text="${cat.servicio.nameServicio}"></td>
-						<td class="text-center"><a th:href="@{'/usuarios/update/' + ${cat.idUsuario}}"><i class="fa fa-edit" style="color: rgb(240, 184, 15)ing;"></i></a></td>
-						<td class="text-center" align="center"><a
-							th:href="@{/usuarios/view/} + ${cat.idUsuario}">
-							
-							<i class="fa fa-eye" style="color: gray;"></i>
-							</a></td>
+					<tr th:each="cat : ${listaAlertas}">
+						<td class="text-center" th:text="${cat.idAlerta}"></td>
+						<td class="text-center" th:text="${cat.cEstados.nameEstados}"></td>
+						<td class="text-center" th:text="${cat.idUsuarioAux.nameUsuario}"></td>
+						<td class="text-center" th:text="${cat.idUsuarioRes.nameUsuario}"></td>
+						<td class="text-center" th:text="${cat.fecha}"></td>
 					</tr>
 				</tbody>
 			</table>
