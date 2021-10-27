@@ -6,7 +6,7 @@ import pe.edu.upc.entities.Contacto;
 
 public interface IContactoService {
 	
-	public boolean insert(Contacto contacto);
+	public Integer insert(Contacto contacto);
 
 	List<Contacto> list();
 

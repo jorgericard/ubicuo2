@@ -18,14 +18,13 @@ public class ContactoServiceImplement implements IContactoService{
 	private IContactoRepository cR;
 	
 	@Override
-	public boolean insert(Contacto contacto) {
+	public Integer insert(Contacto contacto) {
 		// TODO Auto-generated method stub
-		Contacto objContacto = cR.save(contacto);
-		if (objContacto == null) {
-			return false;
-		} else {
-			return true;
+		int rpta= cR.contactosExistentes(contacto.getNameContacto());
+		if (rpta==0) {
+			cR.save(contacto);
 		}
+		return rpta;
 	}
 
 	@Override
