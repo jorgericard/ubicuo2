@@ -37,7 +37,7 @@
 						<th scope="col" class="text-center">DISTRITO</th>
 						<th scope="col" class="text-center">TIPOSERVICIO</th>
 						<th scope="col" class="text-center">OPERACIÓN</th>
-						<th scope="col" class="text-center">DETALLE</th>
+					
 					</tr>
 				</thead>
 				<tbody>
@@ -50,11 +50,7 @@
 						<td class="text-center" th:text="${p.distrito.nameDistrito}"></td>
 						<td class="text-center" th:text="${p.tipoServicio.nameTiposervicio}"></td>
 						<td class="text-center"><a th:href="@{'/servicios/update/' + ${p.idServicio}}"><i class="fa fa-edit" style="color: rgb(240, 184, 15)ing;"></i></a></td>
-						<td class="text-center" align="center"><a
-							th:href="@{/servicios/view/} + ${p.idServicio}">
-							
-							<i class="fa fa-eye" style="color: gray;"></i>
-							</a></td>
+						
 					</tr>
 				</tbody>
 			</table>

@@ -18,8 +18,7 @@ public class Servicio {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idServicio;
 	
-	@Column(name="foto", nullable= true)
-	private String photoServicio;
+
 	
 	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del servicio no puede contener un número")
 	@Pattern(regexp = "[^0-9]+", message = "El nombre del servicio no puede contener un número")
@@ -39,11 +38,11 @@ public class Servicio {
 	
 	
 
-	public Servicio(int idServicio, String photoServicio,String nameServicio,
+	public Servicio(int idServicio,String nameServicio,
 			String direccionServicio, Distrito distrito, TipoServicio tipoServicio) {
 		super();
 		this.idServicio = idServicio;
-		this.photoServicio = photoServicio;
+
 		this.nameServicio = nameServicio;
 		this.direccionServicio = direccionServicio;
 		this.distrito = distrito;
@@ -63,13 +62,7 @@ public class Servicio {
 		this.idServicio = idServicio;
 	}
 
-	public String getPhotoServicio() {
-		return photoServicio;
-	}
-
-	public void setPhotoServicio(String photoServicio) {
-		this.photoServicio = photoServicio;
-	}
+	
 
 	public String getNameServicio() {
 		return nameServicio;
