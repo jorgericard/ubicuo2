@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "contactos")
@@ -17,16 +19,16 @@ public class Contacto {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idContacto;
 	
-	@Column(name = "foto", nullable = true)
-	private String photoContacto;
-	
 	@ManyToOne
 	@JoinColumn(name = "idUsuario", nullable = false)
 	private Usuario usuario;
 	
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del contacto no puede contener caracteres especiales")
+	@Pattern(regexp = "[^0-9]+", message = "El nombre del contacto no puede contener un número")
 	@Column(name="nameContacto", length=60, nullable=false)
 	private String nameContacto;
 	
+	@NotNull
 	@Column(name = "numeroCelular", length=9, nullable = false)
 	private String numeroCelular;
 
@@ -73,14 +75,6 @@ public class Contacto {
 
 	public void setNumeroCelular(String numeroCelular) {
 		this.numeroCelular = numeroCelular;
-	}
-
-	public String getPhotoContacto() {
-		return photoContacto;
-	}
-
-	public void setPhotoContacto(String photoContacto) {
-		this.photoContacto = photoContacto;
 	}
 	
 }

@@ -32,10 +32,10 @@
 				<thead class="thead-light">
 					<tr>
 						<th scope="col" class="text-center">ID</th>
-						<th scope="col" class="text-center">Nombre</th>
+						<th scope="col" class="text-center">NOMBRE</th>
+						<th scope="col" class="text-center">CELULAR</th>
 						<th scope="col" class="text-center">USUARIO</th>
 						<th scope="col" class="text-center">OPERACIÓN</th>
-						<th scope="col" class="text-center">DETALLE</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -44,13 +44,9 @@
 							th:href="@{/contactos/view/} + ${p.idContacto}"
 							th:text="${p.idContacto}"></a></td>
 						<td class="text-center" th:text="${p.nameContacto}"></td>
+						<td class="text-center" th:text="${p.numeroCelular}"></td>
 						<td class="text-center" th:text="${p.usuario.nameUsuario}"></td>
 						<td class="text-center"><a th:href="@{'/contactos/update/' + ${p.idContacto}}"><i class="fa fa-edit" style="color: rgb(240, 184, 15)ing;"></i></a></td>
-						<td class="text-center" align="center"><a
-							th:href="@{/contactos/view/} + ${p.idContacto}">
-							
-							<i class="fa fa-eye" style="color: gray;"></i>
-							</a></td>
 					</tr>
 				</tbody>
 			</table>
