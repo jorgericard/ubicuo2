@@ -18,6 +18,9 @@ public class Usuario
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idUsuario;
 	
+	@Column(name = "foto", nullable = true)
+	private String photoUsuario;
+	
 	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Usuario no puede contener un número")
 	@Pattern(regexp = "[^0-9]+", message = "El nombre del Usuario no puede contener un número")
 	@Column(name = "nombre_apellidoUsuario", length = 35, nullable = false)
@@ -53,10 +56,11 @@ public class Usuario
 		super();
 	}
 
-	public Usuario(int idUsuario, String nameUsuario, String password, String correo, int dni, TipoUsuario tiposusuario, Ubicacion ubicacion, Cargo cargo, Servicio servicio) 
+	public Usuario(int idUsuario,String photoUsuario ,String nameUsuario, String password, String correo, int dni, TipoUsuario tiposusuario, Ubicacion ubicacion, Cargo cargo, Servicio servicio) 
 	{
 		super();
 		this.idUsuario = idUsuario;
+		this.photoUsuario=photoUsuario;
 		this.nameUsuario = nameUsuario;
 		this.password = password;
 		this.correo = correo;
@@ -146,6 +150,14 @@ public class Usuario
 	public void setServicio(Servicio servicio) 
 	{
 		this.servicio = servicio;
+	}
+
+	public String getPhotoUsuario() {
+		return photoUsuario;
+	}
+
+	public void setPhotoUsuario(String photoUsuario) {
+		this.photoUsuario = photoUsuario;
 	}
 	
 }
