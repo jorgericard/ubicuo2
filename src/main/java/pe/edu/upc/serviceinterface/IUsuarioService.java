@@ -6,7 +6,8 @@ import pe.edu.upc.entities.Usuario;
 
 public interface IUsuarioService 
 {
-	public Integer insert(Usuario Usuario);
+	public boolean insert(Usuario Usuario);
 	
 	List<Usuario> list();
+	Usuario listarId(int idUsuario);
 }

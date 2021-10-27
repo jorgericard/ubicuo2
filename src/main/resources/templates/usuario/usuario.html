@@ -31,7 +31,7 @@
 			</div>
 			<div class="col-8 frm-registro">
 				<form th:action="@{/usuarios/save}" method="post"
-					th:object="${usuario}">
+					th:object="${usuario}" enctype="multipart/form-data">
 					<div class="form-group">
 					
 						<label>ID:</label> <input type="text" class="form-control"
@@ -122,6 +122,14 @@
 						</div>
 						
 						<br/>
+						<div class="form-group">
+							<label for="file" class="">FOTO:</label>
+							<div class="col-sm-6">
+								<input type="file" name="file" class="form-control" style="width:290px";
+									th:text="${usuario.	photoUsuario}" />
+							</div>
+
+						</div>
 
 					</div>
 					<button type="submit" class="btn btn-warning">Aceptar</button>

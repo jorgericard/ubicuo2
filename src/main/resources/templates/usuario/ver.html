@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
@@ -22,54 +23,30 @@
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
+
 		<div class="content container">
 
-			<div class="d-flex">
-				<h3 class="title-content">Lista de Usuarios</h3>
-				<a th:href="@{/usuarios/new}" class="btn btn-warning">Nuevo</a>
+			<div class="detail">
+				<img class="detailimg"
+					th:if="${#strings.length(usuario.photoUsuario)> 0}"
+					th:src="@{'/usuarios/uploads/' + ${usuario.photoUsuario}}"
+					th:alt="${usuario.photoUsuario}">
+				<div class="blend"></div>
+
+				<div class="detalles">
+					<a th:href="@{/usuarios/list}" class="volverdet" href=""><i
+						class="fa fa-arrow-left"></i></a>
+					<h2 th:text="${usuario.nameUsuario}" class="prodnombre"></h2>
+
+					
+				</div>
 			</div>
-			<table class="table">
-				<thead class="thead-light">
-					<tr>
-						<th scope="col" class="text-center">Código</th>
-						<th scope="col" class="text-center">Nombre y Apellido</th>
-						<th scope="col" class="text-center">Contraseña</th>
-						<th scope="col" class="text-center">Correo</th>
-						<th scope="col" class="text-center">DNI</th>
-						<th scope="col" class="text-center">Tipo usuario</th>
-						<th scope="col" class="text-center">Ubicación</th>
-						<th scope="col" class="text-center">Cargo</th>
-						<th scope="col" class="text-center">Servicio</th>
-						<th scope="col" class="text-center">OPERACIÓN</th>
-						<th scope="col" class="text-center">DETALLE</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="cat : ${listaUsuarios}">
-						<td class="text-center" th:text="${cat.idUsuario}"></td>
-						<td class="text-center" th:text="${cat.nameUsuario}"></td>
-						<td class="text-center" th:text="${cat.password}"></td>
-						<td class="text-center" th:text="${cat.correo}"></td>
-						<td class="text-center" th:text="${cat.dni}"></td>
-						<td class="text-center" th:text="${cat.tiposusuario.nameTipoUsuario}"></td>
-						<td class="text-center" th:text="${cat.ubicacion.nlongitud}"></td>
-						<td class="text-center" th:text="${cat.cargo.nameCargo}"></td>
-						<td class="text-center" th:text="${cat.servicio.nameServicio}"></td>
-						<td class="text-center"><a th:href="@{'/usuarios/update/' + ${cat.idUsuario}}"><i class="fa fa-edit" style="color: rgb(240, 184, 15)ing;"></i></a></td>
-						<td class="text-center" align="center"><a
-							th:href="@{/usuarios/view/} + ${cat.idUsuario}">
-							
-							<i class="fa fa-eye" style="color: gray;"></i>
-							</a></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div th:if="${mensaje}" class="alert alert-danger">
-			<p th:text="${mensaje}"></p>
 		</div>
 
 	</div>
+
+
+
 
 
 	<script src="/js/popper.min.js"></script>
