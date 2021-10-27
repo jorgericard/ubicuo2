@@ -38,8 +38,7 @@ public class ServiciosServiceImplement implements IServicioService{
 	@Transactional
 	public Servicio listarId(int idServicio) {
 		// TODO Auto-generated method stub
-		Optional<Servicio> op= sR.findById(idServicio);
-		
+		Optional<Servicio> op= sR.findById(idServicio);	
 		return op.isPresent() ? op.get() : new Servicio();
 	}
 	
