@@ -1,5 +1,6 @@
 package pe.edu.upc.entities;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -39,15 +40,21 @@ public class Alerta {
 	@JoinColumn(name = "idUsuarioRes", nullable = false)
 	private Usuario idUsuarioRes;
 
-    @Column(name = "hire_date")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    @NotNull(message = "Ingrese una fecha")
-    @Temporal(TemporalType.DATE)
+	@NotNull(message = "Ingrese una fecha")
+	@Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "fecha")
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date fecha;
 
 	public Alerta() {
 		super();
 		// TODO Auto-generated constructor stub
+		Calendar today = Calendar.getInstance();
+		fecha = today.getTime();
+		today.add(Calendar.DATE, 3);
+		today.set(Calendar.HOUR_OF_DAY, 19);
+		today.set(Calendar.MINUTE, 0);
+		today.set(Calendar.SECOND, 0);
 	}
 
 	public Alerta(int idAlerta, Estados cEstados, Usuario idUsuarioAux, Usuario idUsuarioRes, Date fecha) {
