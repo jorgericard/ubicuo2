@@ -21,12 +21,12 @@ public class ServiciosServiceImplement implements IServicioService{
 	@Override
 	public boolean insert(Servicio servicio) {
 		// TODO Auto-generated method stub
-		Servicio objServicio= sR.save(servicio);
-		if (objServicio== null) {
-			return false;
-		}else{
-			return true;
+
+		int rpta=sR.buscarServicio(servicio.getNameServicio());
+		if (rpta==0) {
+			sR.save(servicio);
 		}
+		return rpta;
 		
 	}
 

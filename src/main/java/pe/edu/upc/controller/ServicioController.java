@@ -21,7 +21,6 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
 import pe.edu.upc.entities.Servicio;
 import pe.edu.upc.serviceinterface.IDistritoService;
 import pe.edu.upc.serviceinterface.IServicioService;
@@ -72,14 +71,21 @@ public class ServicioController {
 			model.addAttribute("listaTipoServicios", tService.list());
 			return "servicio/servicio";
 		} else {
-			boolean flag = sService.insert(servicio);
-			if (flag) {
-				return "redirect:/servicios/list";
+
+			int rpta = sService.insert(servicio);
+			if (rpta > 0) {
+				model.addAttribute("mensaje", "Ya existe Ingrese nuevo Nombre de Servicio");
+				model.addAttribute("listaDistritos", dService.list());
+				model.addAttribute("listaTipoServicios", tService.list());
+				return "servicio/servicio";
 			} else {
-				model.addAttribute("mensaje", "Ocurrió un error");
-				return "redirect:/servicios/new";
+				model.addAttribute("mensaje", "Se guardo correctamente");
+				status.setComplete();
 			}
 		}
+
+		model.addAttribute("servicio", new Servicio());
+		return "redirect:/servicios/list";
 		
 	}
 
