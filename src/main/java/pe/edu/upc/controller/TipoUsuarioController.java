@@ -45,7 +45,8 @@ public class TipoUsuarioController
 	}
 	
 	@PostMapping("/save")
-	public String saveMarca(@ModelAttribute("tipousuario") @Valid TipoUsuario tipousuario, BindingResult result, Model model, SessionStatus status) throws Exception 
+	public String saveMarca(@ModelAttribute("tipousuario") @Valid TipoUsuario tipousuario, BindingResult result, Model model, SessionStatus status) 
+			throws Exception 
 	{
 		if (result.hasErrors()) 
 		{

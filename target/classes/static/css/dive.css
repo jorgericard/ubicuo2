@@ -294,9 +294,9 @@
 .detalles {
 	position: absolute;
 	z-index: 4;
-	color: white;
-	width: 70%;
-	height: 70vh;
+	color: black;
+	width: 20px;
+	height: 20px;
 }
 
 .prodnombre {
@@ -331,10 +331,10 @@
 
 .volverdet {
 	position: absolute;
-	left: 20px;
+	left: -87px;
 	font-size: 40px;
 	top: 20px;
-	color: white;
+	color: black;
 	transition:1s;
 }
 

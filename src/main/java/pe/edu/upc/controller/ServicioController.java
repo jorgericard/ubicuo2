@@ -72,19 +72,15 @@ public class ServicioController {
 			model.addAttribute("listaTipoServicios", tService.list());
 			return "servicio/servicio";
 		} else {
-			int rpta = sService.insert(servicio);
-			if (rpta > 0) {
-				model.addAttribute("listaDistritos", dService.list());
-				model.addAttribute("listaTipoServicios", tService.list());
-				model.addAttribute("mensaje", "Ya existe");
-				return "servicio/servicio";
+			boolean flag = sService.insert(servicio);
+			if (flag) {
+				return "redirect:/servicios/list";
 			} else {
-				model.addAttribute("mensaje", "Se guardó correctamente");
-				status.setComplete();
+				model.addAttribute("mensaje", "Ocurrió un error");
+				return "redirect:/servicios/new";
 			}
 		}
-		model.addAttribute("servicio", new Servicio());
-		return "redirect:/servicios/list";
+		
 	}
 
 	@GetMapping(value = "/uploads/{filename:.+}")

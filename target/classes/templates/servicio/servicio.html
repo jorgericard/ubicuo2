@@ -38,7 +38,7 @@
 						</div>
 
 						<div class="form-group">
-							<label for="nombre">NOMBRE:</label> <input type="text" required
+							<label for="nombre">Nombre:</label> <input type="text" required
 								th:field="*{nameServicio}" class="form-control" id="nombre"></input>
 						</div>
 						<div class="alert alert-danger"
@@ -46,42 +46,46 @@
 							th:errors="*{nameServicio}"></div>
 
 						<div class="form-group">
-							<label for="direccion">Direccion:</label> <input type="text" required
-								th:field="*{direccionServicio}" class="form-control" id="direccion"></input>
+							<label for="direccion">Direccion:</label> <input type="text"
+								required th:field="*{direccionServicio}" class="form-control"
+								id="direccion"></input>
 						</div>
 						<div class="alert alert-danger"
 							th:if="${#fields.hasErrors('direccionServicio')}"
 							th:errors="*{direccionServicio}"></div>
+						<div class="form-group">
+							<label for="numtelef">Num Telef:</label> <input type="tel" required
+								th:field="*{numtelef}" class="form-control" id="numtelef"></input>
+						</div>
+						<div class="alert alert-danger"
+							th:if="${#fields.hasErrors('numtelef')}"
+							th:errors="*{numtelef}"></div>
 					</div>
 
 					<div class="col-6">
 						<div class="form-group">
-							<label for="distrito">DISTRITO:</label> <select
-								class="form-control" th:field="*{distrito}">
-								<option th:value="${null}" selected>--Seleccione--</option>
+							<label for="distrito">Distrito:</label> <select
+								class="form-control" th:field="*{distrito.idDistrito}">
 								<option th:each="c: ${listaDistritos}"
-									th:value="${c.idDistrito}" th:text="${c.nameDistrito}"></option>
+									th:value="${c.idDistrito}" th:text="${c.nameDistrito}"
+									th:selected="(${c.idDistrito} == *{distrito.idDistrito})"></option>
 							</select>
-							<small class="form-text text-danger" th:if="${#fields.hasErrors('distrito')}"
-                                    th:errors="*{distrito}"></small>
 						</div>
 
 
 
 						<div class="form-group">
-							<label for="tiposervicio">TIPOSERVICIO:</label> <select
-								class="form-control" th:field="*{tipoServicio}">
-								<option th:value="${null}" selected>--Seleccione--</option>
+							<label for="tiposervicio">TipoServicio:</label> <select
+								class="form-control" th:field="*{tipoServicio.idTiposervicio}">
 								<option th:each="s: ${listaTipoServicios}"
-									th:value="${s.idTiposervicio}" th:text="${s.nameTiposervicio}"></option>
+									th:value="${s.idTiposervicio}" th:text="${s.nameTiposervicio}"
+									th:selected="(${s.idTiposervicio} == *{tipoServicio.idTiposervicio})"></option>
 							</select>
-							<small class="form-text text-danger" th:if="${#fields.hasErrors('tipoServicio')}"
-                                    th:errors="*{tipoServicio}"></small>
 						</div>
 
 
 
-					
+
 
 					</div>
 

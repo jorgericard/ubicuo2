@@ -34,6 +34,7 @@
 						<th scope="col" class="text-center">ID</th>
 						<th scope="col" class="text-center">Nombre</th>
 						<th scope="col" class="text-center">DIRECCION</th>
+						<th scope="col" class="text-center">Num Telef</th>
 						<th scope="col" class="text-center">DISTRITO</th>
 						<th scope="col" class="text-center">TIPOSERVICIO</th>
 						<th scope="col" class="text-center">OPERACIÓN</th>
@@ -42,14 +43,14 @@
 				</thead>
 				<tbody>
 					<tr th:each="p: ${listaServicios}">
-						<td class="text-center"><a class="btn btn-warning btn-xs"
-							th:href="@{/servicios/view/} + ${p.idServicio}"
-							th:text="${p.idServicio}"></a></td>
+						<td class="text-center"
+							th:text="${p.idServicio}"></td>
 						<td class="text-center" th:text="${p.nameServicio}"></td>
 						<td class="text-center" th:text="${p.direccionServicio}"></td>
+						<td class="text-center" th:text="${p.numtelef}"></td>
 						<td class="text-center" th:text="${p.distrito.nameDistrito}"></td>
 						<td class="text-center" th:text="${p.tipoServicio.nameTiposervicio}"></td>
-						<td class="text-center"><a th:href="@{'/servicios/update/' + ${p.idServicio}}"><i class="fa fa-edit" style="color: rgb(240, 184, 15)ing;"></i></a></td>
+						<td class="text-center"><a th:href="@{'/servicios/update/' + ${p.idServicio}}">Modificar</a></td>
 						
 					</tr>
 				</tbody>
