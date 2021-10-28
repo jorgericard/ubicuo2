@@ -18,14 +18,14 @@ public class UsuarioServiceImplement implements IUsuarioService
 	private IUsuarioRepository cR;
 	
 	@Override
-	public boolean insert(Usuario usuario) {
+	public Integer insert(Usuario usuario) {
 		// TODO Auto-generated method stub
-		Usuario objUsuario= cR.save(usuario);
-		if (objUsuario==null) {
-			return false;
-		} else {
-			return true;
+		int rpta= cR.UsuariosExistentes(usuario.getNameUsuario());
+		if(rpta==0) {
+			cR.save(usuario);
+			
 		}
+		return rpta;
 
 	}
 

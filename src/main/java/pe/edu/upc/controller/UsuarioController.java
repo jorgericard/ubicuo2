@@ -83,7 +83,7 @@ public class UsuarioController
 	}
 	
 	@RequestMapping("/save")
-	public String saveMarca(@ModelAttribute @Valid Usuario usuario, BindingResult binRes, Model model,
+	public String saveMarca(@ModelAttribute("usuario") @Valid Usuario usuario, BindingResult binRes, Model model,
 			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) 
 			throws ParseException	{
 		if (binRes.hasErrors()) 
@@ -114,9 +114,10 @@ public class UsuarioController
 				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
 				usuario.setPhotoUsuario(uniqueFilename);
 			}
-			boolean flag = usS.insert(usuario);
-			if (flag) {
-				return "redirect:/usuarios/list";
+			int rpta = usS.insert(usuario);
+			if (rpta > 0) {
+				model.addAttribute("mensaje", "Ya existe, ingrese una nueva alerta");
+				return "usuario/usuario";
 			} else {
 				model.addAttribute("mensaje", "Ocurrió un error");
 				return "redirect:/usuarios/list";
