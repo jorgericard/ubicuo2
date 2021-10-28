@@ -20,7 +20,7 @@ public class UsuarioServiceImplement implements IUsuarioService
 	@Override
 	public Integer insert(Usuario usuario) {
 		// TODO Auto-generated method stub
-		int rpta= cR.UsuariosExistentes(usuario.getNameUsuario());
+		int rpta= cR.usuariosExistentes(usuario.getNameUsuario());
 		if(rpta==0) {
 			cR.save(usuario);
 			
