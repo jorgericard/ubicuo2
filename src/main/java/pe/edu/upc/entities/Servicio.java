@@ -29,7 +29,7 @@ public class Servicio {
 	@Column(name="direccionServicio",nullable=false, length=60)
 	private String direccionServicio;
 	
-	@Pattern(regexp = "[^0]\\d{2}", message = "Ingrese un número valido.")
+	
 	@Column(name="numtelef",nullable=false, length=60)
 	private String numtelef;
 	

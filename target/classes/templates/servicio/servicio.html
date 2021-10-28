@@ -54,7 +54,7 @@
 							th:if="${#fields.hasErrors('direccionServicio')}"
 							th:errors="*{direccionServicio}"></div>
 						<div class="form-group">
-							<label for="numtelef">Num Telef:</label> <input type="tel" required
+							<label for="numtelef">Num Telef:</label> <input type="tel" minlength="3" maxlength="9" required
 								th:field="*{numtelef}" class="form-control" id="numtelef"></input>
 						</div>
 						<div class="alert alert-danger"

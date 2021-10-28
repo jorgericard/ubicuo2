@@ -24,6 +24,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
 import pe.edu.upc.entities.Usuario;
 import pe.edu.upc.serviceinterface.ICargoService;
 import pe.edu.upc.serviceinterface.IServicioService;
@@ -83,7 +84,7 @@ public class UsuarioController
 	}
 	
 	@RequestMapping("/save")
-	public String saveMarca(@ModelAttribute("usuario") @Valid Usuario usuario, BindingResult binRes, Model model,
+	public String saveMarca(@Valid Usuario usuario, BindingResult binRes, Model model,
 			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) 
 			throws ParseException	{
 		if (binRes.hasErrors()) 
@@ -116,13 +117,19 @@ public class UsuarioController
 			}
 			int rpta = usS.insert(usuario);
 			if (rpta > 0) {
-				model.addAttribute("mensaje", "Ya existe, ingrese una nueva alerta");
+				model.addAttribute("mensaje", "Ya existe, ingrese un Nuevo Nombre");
+				model.addAttribute("listatipousuarios", iS.list());
+				model.addAttribute("listaubicacion", ubS.list());
+				model.addAttribute("listacargo", cS.list());
+				model.addAttribute("listaservicio", sS.list());
 				return "usuario/usuario";
 			} else {
-				model.addAttribute("mensaje", "Ocurrió un error");
-				return "redirect:/usuarios/list";
+				model.addAttribute("mensaje", "Se guardo correctamente");
+				status.setComplete();
 			}
 		}
+		model.addAttribute("usuario", new Usuario());
+		return "redirect:/usuarios/list";
 		
 	}
 	@GetMapping(value = "/uploads/{filename:.+}")
