@@ -44,7 +44,7 @@
 						<td class="text-center" th:text="${cat.cEstados.nameEstados}"></td>
 						<td class="text-center" th:text="${cat.idUsuarioAux.nameUsuario}"></td>
 						<td class="text-center" th:text="${cat.idUsuarioRes.nameUsuario}"></td>
-						<td class="text-center" th:text="${cat.fecha}"></td>
+						<td class="text-center" th:text="${#dates.format(cat.fecha, 'dd-MMM-yyyy HH:mm:ss')}"></td>
 					</tr>
 				</tbody>
 			</table>
