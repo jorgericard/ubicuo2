@@ -1,6 +1,7 @@
 package pe.edu.upc.serviceimplement;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,11 +26,23 @@ public class CargoServiceImplement implements ICargoService
 		}
 		return rpta;
 	}
+	
+	@Override
+	public void delete(int idCargo) 
+	{
+		cR.deleteById(idCargo);
+	}
 
+	@Override
+	public Optional<Cargo> listId(int idCargo) 
+	{
+		return cR.findById(idCargo);
+	}
+	
 	@Override
 	public List<Cargo> list() 
 	{
 		return cR.findAll();
 	}
-
+	
 }

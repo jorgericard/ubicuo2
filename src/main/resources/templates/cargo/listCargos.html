@@ -33,12 +33,16 @@
 					<tr>
 						<th scope="col" class="text-center">Código</th>
 						<th scope="col" class="text-center">Nombre</th>
+						<th scope="col" class="text-center">Eliminar</th>
+						<th scope="col" class="text-center">Modificar</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="cat : ${listaCargos}">
 						<td class="text-center" th:text="${cat.idCargo}"></td>
 						<td class="text-center" th:text="${cat.nameCargo}"></td>
+						<td class="text-center"><a th:href="@{/cargos/delete?id=}+${cat.idCargo}"><i class="iconf fa fa-trash" style="color:red"></i></a></td>
+						<td class="text-center"><a th:href="@{'/cargos/update/'+${cat.idCargo}}"><i class="iconf fa fa-pencil-square" style="color:blue"></i></a></td>
 					</tr>
 				</tbody>
 			</table>
