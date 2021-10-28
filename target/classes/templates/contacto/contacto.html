@@ -25,7 +25,7 @@
 		<div class="content container row col-12">
 			<div class="col-6">
 				<h3>Registrar Contacto</h3>
-				<img class="imgform" alt="" th:src="@{/img/form/producto.png}">
+				<img class="imgform" alt="" th:src="@{/img/form/contacto.png}">
 			</div>
 			<div class="col-6 frm-registro">
 				<form th:action="@{/contactos/save}" method="post" class="row"
@@ -44,27 +44,25 @@
 						<div class="alert alert-danger"
 							th:if="${#fields.hasErrors('nameContacto')}"
 							th:errors="*{nameContacto}"></div>
+							
+						<div class="form-group">
+							<label for="numero">NUMERO:</label> <input type="text" required
+								th:field="*{numeroCelular}" class="form-control" id="nombre"></input>
+						</div>
+						<div class="alert alert-danger"
+							th:if="${#fields.hasErrors('numeroCelular')}"
+							th:errors="*{numeroCelular}"></div>
 					</div>
 
 					<div class="col-6">
 						<div class="form-group">
 							<label for="usuario">USUARIO:</label> <select
 								class="form-control" th:field="*{usuario.idUsuario}">
-								<option th:each="c: ${listaUsuarios}"
-									th:value="${c.idUsuario}" th:text="${c.nameUsuario}"
+								<option th:each="c: ${listaUsuarios}" th:value="${c.idUsuario}"
+									th:text="${c.nameUsuario}"
 									th:selected="(${c.idUsuario} == *{usuario.idUsuario})"></option>
 							</select>
 						</div>
-
-						<div class="form-group">
-							<label for="file" class="">FOTO:</label>
-							<div class="col-sm-6">
-								<input type="file" name="file" class="form-control"
-									th:text="${contacto. photoContacto}" />
-							</div>
-
-						</div>
-
 					</div>
 
 					<button style="margin: 0px 30px;" type="submit"
