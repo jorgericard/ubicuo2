@@ -64,7 +64,7 @@
 								th:field="*{correo}" class="form-control" id="correo"></input>
 							<div class="alert alert-danger"
 								th:if="${#fields.hasErrors('correo')}"
-								th:errors="correo"></div>
+								th:errors="*{correo}"></div>
 						</div>
 						
 						<br/>
@@ -74,7 +74,7 @@
 								th:field="*{dni}" class="form-control" id="dni"></input>
 							<div class="alert alert-danger"
 								th:if="${#fields.hasErrors('dni')}"
-								th:errors="dni"></div>
+								th:errors="*{dni}"></div>
 						</div>
 						
 						<br/>

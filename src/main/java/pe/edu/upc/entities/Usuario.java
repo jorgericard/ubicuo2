@@ -32,8 +32,9 @@ public class Usuario
 	@Column(name = "correo", length = 35, nullable = false)
 	private String correo;
 	
+	@Pattern(regexp = "[^0]\\d{7}", message = "Ingrese DNI correctamente.")
 	@Column(name = "dni", nullable = false)
-	private int dni;
+	private String dni;
 	
 	@ManyToOne
 	@JoinColumn(name = "idTipoUsuario", nullable = false)
@@ -56,11 +57,14 @@ public class Usuario
 		super();
 	}
 
-	public Usuario(int idUsuario,String photoUsuario ,String nameUsuario, String password, String correo, int dni, TipoUsuario tiposusuario, Ubicacion ubicacion, Cargo cargo, Servicio servicio) 
-	{
+	public Usuario(int idUsuario, String photoUsuario,
+			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Usuario no puede contener un número") @Pattern(regexp = "[^0-9]+", message = "El nombre del Usuario no puede contener un número") String nameUsuario,
+			String password, String correo,
+			@Pattern(regexp = "[^0]\\d{7}", message = "Ingrese DNI correctamente.") String dni,
+			TipoUsuario tiposusuario, Ubicacion ubicacion, Cargo cargo, Servicio servicio) {
 		super();
 		this.idUsuario = idUsuario;
-		this.photoUsuario=photoUsuario;
+		this.photoUsuario = photoUsuario;
 		this.nameUsuario = nameUsuario;
 		this.password = password;
 		this.correo = correo;
@@ -71,85 +75,12 @@ public class Usuario
 		this.servicio = servicio;
 	}
 
-	public int getIdUsuario() 
-	{
+	public int getIdUsuario() {
 		return idUsuario;
 	}
-	public void setIdUsuario(int idUsuario) 
-	{
+
+	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
-	}
-
-	public String getNameUsuario() 
-	{
-		return nameUsuario;
-	}
-	public void setNameUsuario(String nameUsuario) 
-	{
-		this.nameUsuario = nameUsuario;
-	}
-
-	public String getPassword() 
-	{
-		return password;
-	}
-	public void setPassword(String password) 
-	{
-		this.password = password;
-	}
-
-	public String getCorreo() 
-	{
-		return correo;
-	}
-	public void setCorreo(String coreo) 
-	{
-		this.correo = coreo;
-	}
-
-	public int getDni() 
-	{
-		return dni;
-	}
-	public void setDni(int dni) 
-	{
-		this.dni = dni;
-	}
-
-	public TipoUsuario getTiposusuario() 
-	{
-		return tiposusuario;
-	}
-	public void setTiposusuario(TipoUsuario tiposusuario) 
-	{
-		this.tiposusuario = tiposusuario;
-	}
-
-	public Ubicacion getUbicacion() 
-	{
-		return ubicacion;
-	}
-	public void setUbicacion(Ubicacion ubicacion) 
-	{
-		this.ubicacion = ubicacion;
-	}
-
-	public Cargo getCargo() 
-	{
-		return cargo;
-	}
-	public void setCargo(Cargo cargo) 
-	{
-		this.cargo = cargo;
-	}
-
-	public Servicio getServicio() 
-	{
-		return servicio;
-	}
-	public void setServicio(Servicio servicio) 
-	{
-		this.servicio = servicio;
 	}
 
 	public String getPhotoUsuario() {
@@ -159,5 +90,70 @@ public class Usuario
 	public void setPhotoUsuario(String photoUsuario) {
 		this.photoUsuario = photoUsuario;
 	}
+
+	public String getNameUsuario() {
+		return nameUsuario;
+	}
+
+	public void setNameUsuario(String nameUsuario) {
+		this.nameUsuario = nameUsuario;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public TipoUsuario getTiposusuario() {
+		return tiposusuario;
+	}
+
+	public void setTiposusuario(TipoUsuario tiposusuario) {
+		this.tiposusuario = tiposusuario;
+	}
+
+	public Ubicacion getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(Ubicacion ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+
+	public Cargo getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(Cargo cargo) {
+		this.cargo = cargo;
+	}
+
+	public Servicio getServicio() {
+		return servicio;
+	}
+
+	public void setServicio(Servicio servicio) {
+		this.servicio = servicio;
+	}
+
 	
 }
