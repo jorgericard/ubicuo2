@@ -13,5 +13,7 @@ public interface ICargoService
 	
 	Optional <Cargo> listId(int idCargo);
 	
+	List<Cargo> findByNameCargo(String name);
+	
 	List<Cargo> list();
 }
