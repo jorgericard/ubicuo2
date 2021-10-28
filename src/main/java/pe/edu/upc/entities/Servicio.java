@@ -29,8 +29,9 @@ public class Servicio {
 	@Column(name="direccionServicio",nullable=false, length=60)
 	private String direccionServicio;
 	
+	@Pattern(regexp = "[^0]\\d{2}", message = "Ingrese un número valido.")
 	@Column(name="numtelef",nullable=false, length=60)
-	private int numtelef;
+	private String numtelef;
 	
 	@ManyToOne
 	@NotNull(message = "Seleccione un Distrito")
@@ -41,25 +42,26 @@ public class Servicio {
 	@NotNull(message = "Seleccione un Tipo de Servicio")
 	@JoinColumn(name = "idTipoServicio", nullable = false)
 	private TipoServicio tipoServicio;
-	
-	
 
-	public Servicio(int idServicio,String nameServicio,
-			String direccionServicio, int numtelef,Distrito distrito, TipoServicio tipoServicio) {
-		super();
-		this.idServicio = idServicio;
-		
-		this.nameServicio = nameServicio;
-		this.direccionServicio = direccionServicio;
-		this.numtelef=numtelef;
-		this.distrito = distrito;
-		this.tipoServicio = tipoServicio;
-	}
 	public Servicio() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	public Servicio(int idServicio,
+			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del servicio no puede contener un número") @Pattern(regexp = "[^0-9]+", message = "El nombre del servicio no puede contener un número") String nameServicio,
+			String direccionServicio,
+			@Pattern(regexp = "[^0]\\d{2}", message = "Ingrese DNI correctamente.") String numtelef,
+			@NotNull(message = "Seleccione un Distrito") Distrito distrito,
+			@NotNull(message = "Seleccione un Tipo de Servicio") TipoServicio tipoServicio) {
+		super();
+		this.idServicio = idServicio;
+		this.nameServicio = nameServicio;
+		this.direccionServicio = direccionServicio;
+		this.numtelef = numtelef;
+		this.distrito = distrito;
+		this.tipoServicio = tipoServicio;
+	}
 
 	public int getIdServicio() {
 		return idServicio;
@@ -68,8 +70,6 @@ public class Servicio {
 	public void setIdServicio(int idServicio) {
 		this.idServicio = idServicio;
 	}
-
-	
 
 	public String getNameServicio() {
 		return nameServicio;
@@ -87,6 +87,14 @@ public class Servicio {
 		this.direccionServicio = direccionServicio;
 	}
 
+	public String getNumtelef() {
+		return numtelef;
+	}
+
+	public void setNumtelef(String numtelef) {
+		this.numtelef = numtelef;
+	}
+
 	public Distrito getDistrito() {
 		return distrito;
 	}
@@ -102,10 +110,6 @@ public class Servicio {
 	public void setTipoServicio(TipoServicio tipoServicio) {
 		this.tipoServicio = tipoServicio;
 	}
-	public int getNumtelef() {
-		return numtelef;
-	}
-	public void setNumtelef(int numtelef) {
-		this.numtelef = numtelef;
-	}
+	
+	
 }
