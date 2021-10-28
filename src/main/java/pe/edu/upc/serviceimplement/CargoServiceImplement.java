@@ -40,6 +40,12 @@ public class CargoServiceImplement implements ICargoService
 	}
 	
 	@Override
+	public List<Cargo> findByNameCargo(String name) 
+	{
+		return cR.findByNameCargo(name);
+	}
+	
+	@Override
 	public List<Cargo> list() 
 	{
 		return cR.findAll();

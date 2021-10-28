@@ -25,9 +25,17 @@
 		<div class="content container">
 
 			<div class="d-flex">
-				<h3 class="title-content">Lista de Cargos</h3>
-				<a th:href="@{/cargos/new}" class="btn btn-warning">Nuevo</a>
+				<h3 class="title-content">Lista de Categorias</h3>
+				<form th:action="@{/cargos/search}" method="post"
+					th:object="${cargo}">
+					<label for="nameCargo">Buscar:</label> <input type="text" required="required"
+						class="form-control" th:field="*{nameCargo}" id="nameCargo"></input>
+					<button type="submit" class="btn btn-danger">Buscar</button>
+					<a href="/cargos/list" class="btn btn-light">Limpiar</a>
+				</form>
+				<a th:href="@{/cargos/new}" class="btnnew btn btn-danger">Nuevo</a>
 			</div>
+
 			<table class="table">
 				<thead class="thead-light">
 					<tr>
