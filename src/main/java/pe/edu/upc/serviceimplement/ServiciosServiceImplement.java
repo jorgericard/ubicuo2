@@ -19,13 +19,15 @@ public class ServiciosServiceImplement implements IServicioService{
 	private IServicioRepository sR;
 
 	@Override
-	public Integer insert(Servicio servicio) {
+	public boolean insert(Servicio servicio) {
 		// TODO Auto-generated method stub
-		int rpta= sR.buscarServicio(servicio.getNameServicio());
-		if (rpta==0) {
-			sR.save(servicio);
+		Servicio objServicio= sR.save(servicio);
+		if (objServicio== null) {
+			return false;
+		}else{
+			return true;
 		}
-		return rpta;
+		
 	}
 
 	@Override
