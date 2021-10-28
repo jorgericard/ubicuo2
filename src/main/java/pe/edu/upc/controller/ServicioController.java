@@ -71,6 +71,7 @@ public class ServicioController {
 			model.addAttribute("listaTipoServicios", tService.list());
 			return "servicio/servicio";
 		} else {
+
 			int rpta = sService.insert(servicio);
 			if (rpta > 0) {
 				model.addAttribute("mensaje", "Ya existe Ingrese nuevo Nombre de Servicio");
@@ -78,10 +79,11 @@ public class ServicioController {
 				model.addAttribute("listaTipoServicios", tService.list());
 				return "servicio/servicio";
 			} else {
-				model.addAttribute("mensaje", "Se guardó correctamente");
+				model.addAttribute("mensaje", "Se guardo correctamente");
 				status.setComplete();
 			}
 		}
+
 		model.addAttribute("servicio", new Servicio());
 		return "redirect:/servicios/list";
 		
