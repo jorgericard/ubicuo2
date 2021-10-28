@@ -45,7 +45,7 @@ public class DistritoController {
 		} else {
 			int rpta = dS.insert(distrito);
 			if (rpta > 0) {
-				model.addAttribute("mensaje", "Ya existe");
+				model.addAttribute("mensaje", "Ya existe, ingrese un nuevo distrito");
 				return "distrito/distrito";
 			} else {
 				model.addAttribute("mensaje", "Se guardó correctamente");

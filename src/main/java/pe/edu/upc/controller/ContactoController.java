@@ -64,7 +64,7 @@ public class ContactoController {
 		} else {
 			int rpta = cService.insert(contacto);
 			if (rpta > 0) {
-				model.addAttribute("mensaje", "Ya existe");
+				model.addAttribute("mensaje", "Ya existe, ingrese un nuevo contacto");
 				return "contacto/contacto";
 			} else {
 				model.addAttribute("mensaje", "Se guardó correctamente");
