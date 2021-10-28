@@ -80,7 +80,7 @@ public class AlertaController {
 		} else {
 			int rpta = aS.insert(alerta);
 			if (rpta > 0) {
-				model.addAttribute("mensaje", "Ya existe, ingrese una nueva alerta");
+				model.addAttribute("mensaje", "Ya existe");
 				return "alerta/alerta";
 			} else {
 				model.addAttribute("mensaje", "Se guardó correctamente");

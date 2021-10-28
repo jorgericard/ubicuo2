@@ -45,7 +45,7 @@ public class EstadosController {
 		} else {
 			int rpta = cService.insert(estados);
 			if (rpta > 0) {
-				model.addAttribute("mensaje", "Ya existe, ingrese un nuevo estado");
+				model.addAttribute("mensaje", "Ya existe");
 				return "estados/estados";
 			} else {
 				model.addAttribute("mensaje", "Se guardó correctamente");
