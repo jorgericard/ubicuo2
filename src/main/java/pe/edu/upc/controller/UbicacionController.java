@@ -46,7 +46,7 @@ public class UbicacionController {
 		} else {
 			int rpta = uS.insert(ubicacion);
 			if (rpta > 0) {
-				model.addAttribute("mensaje", "Ya existe");
+				model.addAttribute("mensaje", "Ya existe, ingrese una nueva ubicacion");
 				return "ubicacion/ubicacion";
 			} else {
 				model.addAttribute("mensaje", "Se guardó correctamente");

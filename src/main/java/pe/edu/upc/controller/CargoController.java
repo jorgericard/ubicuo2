@@ -55,7 +55,7 @@ public class CargoController
 			int rpta = cS.insert(cargo);
 			if (rpta > 0) 
 			{
-				model.addAttribute("mensaje", "Ya existe");
+				model.addAttribute("mensaje", "Ya existe, ingrese un nuevo cargo");
 				return "cargo/cargo";
 			} 
 			else 

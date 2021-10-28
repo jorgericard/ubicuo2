@@ -57,7 +57,7 @@ public class TipoUsuarioController
 			int rpta = cS.insert(tipousuario);
 			if (rpta > 0) 
 			{
-				model.addAttribute("mensaje", "Ya existe");
+				model.addAttribute("mensaje", "Ya existe, ingrese un nuevo tipo de usuario");
 				return "tipousuario/tipousuario";
 			} 
 			else 
