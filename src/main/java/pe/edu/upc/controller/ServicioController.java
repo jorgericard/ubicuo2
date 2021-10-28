@@ -74,7 +74,7 @@ public class ServicioController {
 
 			int rpta = sService.insert(servicio);
 			if (rpta > 0) {
-				model.addAttribute("mensaje", "Ya existe Ingrese nuevo Nombre de Servicio");
+				model.addAttribute("mensaje", "Ya existe, Ingrese nuevo Nombre de Servicio");
 				model.addAttribute("listaDistritos", dService.list());
 				model.addAttribute("listaTipoServicios", tService.list());
 				return "servicio/servicio";
