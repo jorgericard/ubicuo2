@@ -70,7 +70,7 @@
 						<br/>
 						
 						<div class="form-group">
-							<label for="dni">DNI:</label> <input type="text" required
+							<label for="dni">DNI:</label> <input type="text" minlength="8" maxlength="8" required
 								th:field="*{dni}" class="form-control" id="dni"></input>
 							<div class="alert alert-danger"
 								th:if="${#fields.hasErrors('dni')}"
@@ -125,7 +125,7 @@
 						<div class="form-group">
 							<label for="file" class="">FOTO:</label>
 							<div class="col-sm-6">
-								<input type="file" name="file" class="form-control" style="width:290px";
+								<input type="file" name="file" class="form-control"  required
 									th:text="${usuario.	photoUsuario}" />
 							</div>
 

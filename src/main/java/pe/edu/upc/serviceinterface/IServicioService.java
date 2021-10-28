@@ -5,7 +5,7 @@ import java.util.List;
 import pe.edu.upc.entities.Servicio;
 
 public interface IServicioService {
-	public boolean insert(Servicio servicio);
+	public Integer insert(Servicio servicio);
 	
 	List<Servicio> list();
 	
