@@ -88,10 +88,10 @@ public class UsuarioController
 			throws ParseException	{
 		if (binRes.hasErrors()) 
 		{
-			model.addAttribute("listatipousuarios",iS.list());
-			model.addAttribute("listaubicacion",ubS.list());
-			model.addAttribute("listacargo",cS.list());
-			model.addAttribute("listaservicio",sS.list());
+			model.addAttribute("listaTipoUsuarios",iS.list());
+			model.addAttribute("listaUbicacion",ubS.list());
+			model.addAttribute("listaCargo",cS.list());
+			model.addAttribute("listaServicio",sS.list());
 			return "usuario/usuario";
 		} 
 		else 

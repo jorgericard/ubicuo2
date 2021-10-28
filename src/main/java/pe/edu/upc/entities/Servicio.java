@@ -28,6 +28,9 @@ public class Servicio {
 	@Column(name="direccionServicio",nullable=false, length=60)
 	private String direccionServicio;
 	
+	@Column(name="numtelef",nullable=false, length=60)
+	private int numtelef;
+	
 	@ManyToOne
 	@JoinColumn(name = "idDistrito", nullable = false)
 	private Distrito distrito;
@@ -39,12 +42,13 @@ public class Servicio {
 	
 
 	public Servicio(int idServicio,String nameServicio,
-			String direccionServicio, Distrito distrito, TipoServicio tipoServicio) {
+			String direccionServicio, int numtelef,Distrito distrito, TipoServicio tipoServicio) {
 		super();
 		this.idServicio = idServicio;
-
+		
 		this.nameServicio = nameServicio;
 		this.direccionServicio = direccionServicio;
+		this.numtelef=numtelef;
 		this.distrito = distrito;
 		this.tipoServicio = tipoServicio;
 	}
@@ -94,5 +98,11 @@ public class Servicio {
 
 	public void setTipoServicio(TipoServicio tipoServicio) {
 		this.tipoServicio = tipoServicio;
+	}
+	public int getNumtelef() {
+		return numtelef;
+	}
+	public void setNumtelef(int numtelef) {
+		this.numtelef = numtelef;
 	}
 }

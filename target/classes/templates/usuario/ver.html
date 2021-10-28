@@ -27,19 +27,78 @@
 		<div class="content container">
 
 			<div class="detail">
-				<img class="detailimg"
-					th:if="${#strings.length(usuario.photoUsuario)> 0}"
-					th:src="@{'/usuarios/uploads/' + ${usuario.photoUsuario}}"
-					th:alt="${usuario.photoUsuario}">
-				<div class="blend"></div>
-
-				<div class="detalles">
-					<a th:href="@{/usuarios/list}" class="volverdet" href=""><i
+				<div class="detalles" style="position: absolute;
+	z-index: 4;
+	color: black;
+	width: 20px;
+	height: 20px;">
+					<a th:href="@{/usuarios/list}" class="volverdet" style="
+	position: absolute;
+	left: -87px;
+	font-size: 40px;
+	top: 20px;
+	color: black;
+	transition:1s;
+" href=""><i
 						class="fa fa-arrow-left"></i></a>
-					<h2 th:text="${usuario.nameUsuario}" class="prodnombre"></h2>
 
-					
+
 				</div>
+				<div class="shadow-lg p-3 mb-5 bg-white rounded contacto row">
+
+					<div class="row col 7" style="padding: 25px 10px 10px 50px;">
+						<h3>Información de Usuario</h3>
+						<ul style="width: 90%;">
+							<li
+								style="margin: 15px 10px 15px 0px; display: flex; justify-content: space-between; width: 100%; font-weight: bold;">Nombre
+								Apeliido: <label th:text="${usuario.nameUsuario}"
+								style="font-weight: normal"></label>
+							</li>
+							<li
+								style="margin: 15px 10px 15px 0px; display: flex; justify-content: space-between; width: 100%; font-weight: bold;">DNI:
+								<label th:text="${usuario.dni}" style="font-weight: normal"></label>
+							</li>
+							<li
+								style="margin: 15px 10px 15px 0px; display: flex; justify-content: space-between; width: 100%; font-weight: bold;">Contraseña:
+								<label th:text="${usuario.password}" style="font-weight: normal"></label>
+							</li>
+							<li
+								style="margin: 15px 10px 15px 0px; display: flex; justify-content: space-between; width: 100%; font-weight: bold;">Correo:
+								<label th:text="${usuario.correo}" style="font-weight: normal"></label>
+							</li>
+							<li
+								style="margin: 15px 10px 15px 0px; display: flex; justify-content: space-between; width: 100%; font-weight: bold;">Tipo
+								Usuario: <label
+								th:text="${usuario.tiposusuario.nameTipoUsuario}"
+								style="font-weight: normal"></label>
+							</li>
+							<li
+								style="margin: 15px 10px 15px 0px; display: flex; justify-content: space-between; width: 100%; font-weight: bold;">Ubicacion:
+								<label th:text="${usuario.ubicacion.nlongitud}"
+								style="font-weight: normal"></label>
+							</li>
+							<li
+								style="margin: 15px 10px 15px 0px; display: flex; justify-content: space-between; width: 100%; font-weight: bold;">Cargo:
+								<label th:text="${usuario.cargo.nameCargo}"
+								style="font-weight: normal"></label>
+							</li>
+							<li
+								style="margin: 15px 10px 15px 0px; display: flex; justify-content: space-between; width: 100%; font-weight: bold;">Servicio:
+								<label th:text="${usuario.servicio.nameServicio}"
+								style="font-weight: normal"></label>
+							</li>
+						</ul>
+					</div>
+					<div class="col-5">
+						<img th:if="${#strings.length(usuario.photoUsuario)> 0}"
+							th:src="@{'/usuarios/uploads/' + ${usuario.photoUsuario}}"
+							th:alt="${usuario.photoUsuario}" style="width: 250px;">
+					</div>
+
+				</div>
+
+
+
 			</div>
 		</div>
 
