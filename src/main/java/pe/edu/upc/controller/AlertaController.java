@@ -73,6 +73,9 @@ public class AlertaController {
 	public String saveAlerta(@ModelAttribute("alerta") @Valid Alerta alerta, BindingResult result, Model model, SessionStatus status) 
 		throws Exception {
 		if (result.hasErrors()) {
+			model.addAttribute("listaEstados", eS.list());
+			model.addAttribute("listaUsuariosAux", uSaux.list());
+			model.addAttribute("listaUsuariosRes", uSres.list());
 			return "alerta/alerta";
 		} else {
 			int rpta = aS.insert(alerta);

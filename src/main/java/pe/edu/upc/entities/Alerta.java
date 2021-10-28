@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,19 +25,23 @@ public class Alerta {
 	private int idAlerta;
 	
 	@ManyToOne
-	@JoinColumn(name = "cEstados", nullable = true)
+	@NotNull(message = "Seleccione un Estado")
+	@JoinColumn(name = "cEstados", nullable = false)
 	private Estados cEstados;
 	
 	@ManyToOne
-	@JoinColumn(name = "idUsuarioAux", nullable = true)
+	@NotNull(message = "Seleccione un Usuario")
+	@JoinColumn(name = "idUsuarioAux", nullable = false)
 	private Usuario idUsuarioAux;
 	
 	@ManyToOne
-	@JoinColumn(name = "idUsuarioRes", nullable = true)
+	@NotNull(message = "Seleccione un Usuario")
+	@JoinColumn(name = "idUsuarioRes", nullable = false)
 	private Usuario idUsuarioRes;
 
     @Column(name = "hire_date")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @NotNull(message = "Ingrese una fecha")
     @Temporal(TemporalType.DATE)
 	private Date fecha;
 
