@@ -57,22 +57,26 @@
 					<div class="col-6">
 						<div class="form-group">
 							<label for="distrito">DISTRITO:</label> <select
-								class="form-control" th:field="*{distrito.idDistrito}">
+								class="form-control" th:field="*{distrito}">
+								<option th:value="${null}" selected>--Seleccione--</option>
 								<option th:each="c: ${listaDistritos}"
-									th:value="${c.idDistrito}" th:text="${c.nameDistrito}"
-									th:selected="(${c.idDistrito} == *{distrito.idDistrito})"></option>
+									th:value="${c.idDistrito}" th:text="${c.nameDistrito}"></option>
 							</select>
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('distrito')}"
+                                    th:errors="*{distrito}"></small>
 						</div>
 
 
 
 						<div class="form-group">
 							<label for="tiposervicio">TIPOSERVICIO:</label> <select
-								class="form-control" th:field="*{tipoServicio.idTiposervicio}">
+								class="form-control" th:field="*{tipoServicio}">
+								<option th:value="${null}" selected>--Seleccione--</option>
 								<option th:each="s: ${listaTipoServicios}"
-									th:value="${s.idTiposervicio}" th:text="${s.nameTiposervicio}"
-									th:selected="(${s.idTiposervicio} == *{tipoServicio.idTiposervicio})"></option>
+									th:value="${s.idTiposervicio}" th:text="${s.nameTiposervicio}"></option>
 							</select>
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('tipoServicio')}"
+                                    th:errors="*{tipoServicio}"></small>
 						</div>
 
 

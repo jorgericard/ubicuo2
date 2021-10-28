@@ -74,6 +74,8 @@ public class ServicioController {
 		} else {
 			int rpta = sService.insert(servicio);
 			if (rpta > 0) {
+				model.addAttribute("listaDistritos", dService.list());
+				model.addAttribute("listaTipoServicios", tService.list());
 				model.addAttribute("mensaje", "Ya existe");
 				return "servicio/servicio";
 			} else {

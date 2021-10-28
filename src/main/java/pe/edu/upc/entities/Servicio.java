@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Entity
@@ -29,10 +30,12 @@ public class Servicio {
 	private String direccionServicio;
 	
 	@ManyToOne
+	@NotNull(message = "Seleccione un Distrito")
 	@JoinColumn(name = "idDistrito", nullable = false)
 	private Distrito distrito;
 
 	@ManyToOne
+	@NotNull(message = "Seleccione un Tipo de Servicio")
 	@JoinColumn(name = "idTipoServicio", nullable = false)
 	private TipoServicio tipoServicio;
 	
