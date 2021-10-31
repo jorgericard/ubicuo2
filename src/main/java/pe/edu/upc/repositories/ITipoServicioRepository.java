@@ -1,5 +1,7 @@
 package pe.edu.upc.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,5 +14,7 @@ public interface ITipoServicioRepository extends JpaRepository<TipoServicio, Int
 
 	@Query("select count(t.nameTiposervicio) from TipoServicio t where t.nameTiposervicio=:name")
 	public int TipoServicioExistentes(@Param("name") String nombre);
+	
+	List<TipoServicio> findByNameTiposervicio(String name);
 	
 }

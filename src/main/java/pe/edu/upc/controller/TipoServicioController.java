@@ -1,5 +1,8 @@
 package pe.edu.upc.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.TipoServicio;
 import pe.edu.upc.serviceinterface.ITipoServicioService;
@@ -58,5 +65,36 @@ public class TipoServicioController {
 		}
 		model.addAttribute("tiposervicio", new TipoServicio());
 		return "redirect:/tiposervicios/list";
+	}
+	
+	@RequestMapping("/delete")
+	public String deleteTiposervicio(Model model, @RequestParam(value = "id") Integer id, TipoServicio tiposervicio) {
+		tS.delete(id);
+		model.addAttribute("tiposervicio",tiposervicio);
+		model.addAttribute("listaTipoServicios", tS.list());
+		return "tiposervicio/listTipoServicios";
+	}
+
+	@RequestMapping("/update/{id}")
+	public String updateTiposervicio(@PathVariable int id, Model model, RedirectAttributes objRedirect) {
+		Optional<TipoServicio> tiposervicio = tS.listId(id);
+		if (tiposervicio == null) {
+			objRedirect.addFlashAttribute("mensaje", "Ocurrio un error");
+			return "tiposervicio/tiposervicio";
+		} else {
+			model.addAttribute("tiposervicio", tiposervicio);
+			return "tiposervicio/tiposervicio";
+		}
+	}
+	
+	@RequestMapping("/search")
+	public String findTiposervicio(@ModelAttribute TipoServicio tiposervicio, Model model) {
+		
+		List<TipoServicio> listaTipoServicios;
+		listaTipoServicios = tS.findByNameTiposervicio(tiposervicio.getNameTiposervicio());
+		model.addAttribute("tiposervicio",tiposervicio);
+		model.addAttribute("listaTipoServicios",listaTipoServicios);
+		return "tiposervicio/listTipoServicios";
+		
 	}
 }
