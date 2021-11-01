@@ -1,6 +1,7 @@
 package pe.edu.upc.serviceimplement;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class AlertaServiceImplement implements IAlertaService {
 	@Override
 	public Integer insert(Alerta alerta) {
 		// TODO Auto-generated method stub
-		int rpta= aR.buscarAlerta(alerta.getIdAlerta());
+		int rpta= aR.buscarAlerta(alerta.getIdUsuarioRes());
 		if(rpta==0) 
 		{
 			aR.save(alerta);
@@ -30,6 +31,18 @@ public class AlertaServiceImplement implements IAlertaService {
 	public List<Alerta> list() {
 		// TODO Auto-generated method stub
 		return aR.findAll();
+	}
+
+	@Override
+	public void delete(int idAlerta) {
+		// TODO Auto-generated method stub
+		aR.deleteById(idAlerta);
+	}
+
+	@Override
+	public Optional<Alerta> listId(int idAlerta) {
+		// TODO Auto-generated method stub
+		return aR.findById(idAlerta);
 	}
 	
 }

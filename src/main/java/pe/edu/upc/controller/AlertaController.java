@@ -1,5 +1,7 @@
 package pe.edu.upc.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Alerta;
 import pe.edu.upc.serviceinterface.IAlertaService;
@@ -75,7 +80,10 @@ public class AlertaController {
 		} else {
 			int rpta = aS.insert(alerta);
 			if (rpta > 0) {
-				model.addAttribute("mensaje", "Ya existe, ingrese una nueva alerta");
+				model.addAttribute("mensaje", "Usuario Rescatista no disponible");
+				model.addAttribute("listaEstados", eS.list());
+				model.addAttribute("listaUsuariosAux", uSaux.list());
+				model.addAttribute("listaUsuariosRes", uSres.list());
 				return "alerta/alerta";
 			} else {
 				model.addAttribute("mensaje", "Se guardó correctamente");
@@ -84,6 +92,29 @@ public class AlertaController {
 		}
 		model.addAttribute("alerta", new Alerta());
 		return "redirect:/alertas/list";
+	}
+	
+	@RequestMapping("/delete")
+	public String deleteAlerta(Model model, @RequestParam(value = "id") Integer id, Alerta alerta) {
+		aS.delete(id);
+		model.addAttribute("alerta",alerta);
+		model.addAttribute("listaAlertas", aS.list());
+		return "alerta/listAlertas";
+	}
+
+	@RequestMapping("/update/{id}")
+	public String updateAlerta(@PathVariable int id, Model model, RedirectAttributes objRedirect) {
+		Optional<Alerta> alerta = aS.listId(id);
+		if (alerta == null) {
+			objRedirect.addFlashAttribute("mensaje", "Ocurrio un error");
+			return "alerta/alerta";
+		} else {
+			model.addAttribute("listaEstados", eS.list());
+			model.addAttribute("listaUsuariosAux", uSaux.list());
+			model.addAttribute("listaUsuariosRes", uSres.list());
+			model.addAttribute("alerta", alerta);
+			return "alerta/alerta";
+		}
 	}
 
 }
