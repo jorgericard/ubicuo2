@@ -9,5 +9,4 @@ public interface IUsuarioService
 	public Integer insert(Usuario Usuario);
 	
 	List<Usuario> list();
-	Usuario listarId(int idUsuario);
 }

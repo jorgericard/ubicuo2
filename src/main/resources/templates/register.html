@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title>ubicuo-register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style_register.css}" />
+</head>
+<body>
+    <div class="container">
+        <div class="title">Registrate</div>
+        <form action="#">
+            <div class="user-detail">
+                <div class="input-box">
+                    <span class="details">Nombres</span>
+                    <input type="text" placeholder="Ingresa tus nombres" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Apellidos</span>
+                    <input type="text" placeholder="Ingresa tus apellidos" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">DNI</span>
+                    <input type="text" placeholder="Ingresa tu dni" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Correo</span>
+                    <input type="email" placeholder="Ingresa tu correo" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Contraseña</span>
+                    <input type="password" placeholder="Ingresa tu contraseña" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Confirmar contraseña</span>
+                    <input type="password" placeholder="Confirma tu contraseña" required>
+                </div>
+            </div>
+            <div class="container-nota">
+                <div class="texto"> Estos campos de información deben ser completados obligatoriamente*</div>
+            </div>
+            <div class="user-detail">
+                <div class="input-box">
+                    <span class="details">Servicio</span>
+                    <select name="slct1" id="slct1" onchange="populate(this.id,'slct2')">
+                            <option value="">Ingresa tu servicio</option>
+                            <option value="primeros auxilios">Primeros auxilios</option>
+                            <option value="bomberos">Bomberos</option>
+                            <option value="seguridad ciudadana">Seguridad ciudadana</option>
+                        </select>
+                </div>
+                <div class="input-box">
+                    <span class="details">Cargo</span>
+                    <select name="slct2" id="slct2"></select>
+                </div>
+                <script src="/js/select.js"></script>
+            </div>
+            <div class="container-nota">
+                <div class="texto"> Estos campos son obligatorios para aquellas personas que quieran auxiliar a otras. AVISO: El completar estos cuadros no garantiza la aprovación de una cuenta pues esta estara sujeta a investigación*</div>
+            </div>
+            <div class="wrap">
+                <div class="item">
+                    <button class="btn">REGISTRATE</button>
+                </div>
+            </div>
+            <a th:href="@{/login/new}">Ya tienes una cuenta?</a>
+        </form>
+    </div>
+    
+</body>
+</html>
