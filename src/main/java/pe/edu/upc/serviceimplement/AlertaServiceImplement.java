@@ -44,5 +44,11 @@ public class AlertaServiceImplement implements IAlertaService {
 		// TODO Auto-generated method stub
 		return aR.findById(idAlerta);
 	}
+
+	@Override
+	public void insertUpdate(Alerta alerta) {
+		// TODO Auto-generated method stub
+		aR.save(alerta);
+	}
 	
 }

@@ -94,6 +94,23 @@ public class AlertaController {
 		return "redirect:/alertas/list";
 	}
 	
+	@PostMapping("/saveUpdate")
+	public String saveAlertaUpdate(@ModelAttribute("alerta") @Valid Alerta alerta, BindingResult result, Model model, SessionStatus status) 
+		throws Exception {
+		if (result.hasErrors()) {
+			model.addAttribute("listaEstados", eS.list());
+			model.addAttribute("listaUsuariosAux", uSaux.list());
+			model.addAttribute("listaUsuariosRes", uSres.list());
+			return "alerta/alertaUpdate";
+		} else {
+			aS.insertUpdate(alerta);
+			model.addAttribute("mensaje", "Se guardó correctamente");
+			status.setComplete();
+		}
+		model.addAttribute("alerta", new Alerta());
+		return "redirect:/alertas/list";
+	}
+	
 	@RequestMapping("/delete")
 	public String deleteAlerta(Model model, @RequestParam(value = "id") Integer id, Alerta alerta) {
 		aS.delete(id);
@@ -107,13 +124,13 @@ public class AlertaController {
 		Optional<Alerta> alerta = aS.listId(id);
 		if (alerta == null) {
 			objRedirect.addFlashAttribute("mensaje", "Ocurrio un error");
-			return "alerta/alerta";
+			return "alerta/alertaUpdate";
 		} else {
 			model.addAttribute("listaEstados", eS.list());
 			model.addAttribute("listaUsuariosAux", uSaux.list());
 			model.addAttribute("listaUsuariosRes", uSres.list());
 			model.addAttribute("alerta", alerta);
-			return "alerta/alerta";
+			return "alerta/alertaUpdate";
 		}
 	}
 
