@@ -34,6 +34,8 @@
 						<th scope="col" class="text-center">Código</th>
 						<th scope="col" class="text-center">NLONGITUD</th>
 						<th scope="col" class="text-center">NLATITUD</th>
+						<th scope="col" class="text-center">Operación</th>
+						<th scope="col" class="text-center">Operación</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -41,6 +43,12 @@
 						<td class="text-center" th:text="${cat.idUbicacion}"></td>
 						<td class="text-center" th:text="${cat.nlongitud}"></td>
 						<td class="text-center" th:text="${cat.nlatitud}"></td>
+							<td class="text-center"><a
+							th:href="@{/ubicaciones/delete?id=}+${cat.idUbicacion}"><i
+								class="iconf fa fa-trash" style="color: red"></i></a></td>
+						<td class="text-center"><a
+							th:href="@{'/ubicaciones/update/'+${cat.idUbicacion}}"><i
+								class="iconf fa fa-pencil" style="color: red"></i></a></td>
 					</tr>
 				</tbody>
 			</table>

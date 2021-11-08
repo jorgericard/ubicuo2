@@ -11,5 +11,5 @@ import pe.edu.upc.entities.Ubicacion;
 public interface IUbicacionRepository extends JpaRepository<Ubicacion, Integer>{
 	
 	@Query("select count(u.nlongitud) from Ubicacion u where u.nlongitud=:name")
-	public int ubicacionesExistentes(@Param("name") int nombre);
+	public int ubicacionesExistentes(@Param("name") String nombre);
 }

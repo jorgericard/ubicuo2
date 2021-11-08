@@ -19,10 +19,10 @@ public class Ubicacion {
 	
 	
 	@Column(name="nlongitud", length =35, nullable=false)
-	private int nlongitud;
+	private String nlongitud;
 	
 	@Column(name="nlatitud", length =35, nullable=false)
-	private int nlatitud;
+	private String nlatitud;
 
 	public Ubicacion() {
 		super();
@@ -30,7 +30,7 @@ public class Ubicacion {
 	}
 
 	
-	public Ubicacion(int idUbicacion, int nlongitud, int nlatitud) {
+	public Ubicacion(int idUbicacion, String nlongitud, String nlatitud) {
 		super();
 		this.idUbicacion = idUbicacion;
 		this.nlongitud = nlongitud;
@@ -44,19 +44,19 @@ public class Ubicacion {
 		this.idUbicacion = idUbicacion;
 	}
 
-	public int getNlongitud() {
+	public String getNlongitud() {
 		return nlongitud;
 	}
 
-	public void setNlongitud(int nlongitud) {
+	public void setNlongitud(String nlongitud) {
 		this.nlongitud = nlongitud;
 	}
 
-	public int getNlatitud() {
+	public String getNlatitud() {
 		return nlatitud;
 	}
 
-	public void setNlatitud(int nlatitud) {
+	public void setNlatitud(String nlatitud) {
 		this.nlatitud = nlatitud;
 	}
 

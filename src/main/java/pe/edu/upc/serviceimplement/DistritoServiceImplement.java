@@ -1,6 +1,7 @@
 package pe.edu.upc.serviceimplement;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,17 @@ public class DistritoServiceImplement  implements IDistritoService{
 	public List<Distrito> list() {
 		// TODO Auto-generated method stub
 		return dR.findAll();
+	}
+
+	@Override
+	public void delete(int idDistrito) {
+		// TODO Auto-generated method stub
+		dR.deleteById(idDistrito);
+	}
+
+	@Override
+	public Optional<Distrito> listId(int idDistrito) {
+		// TODO Auto-generated method stub
+		return dR.findById(idDistrito);
 	}
 }
