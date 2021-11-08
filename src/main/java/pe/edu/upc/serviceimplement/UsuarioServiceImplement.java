@@ -18,12 +18,12 @@ public class UsuarioServiceImplement implements IUsuarioService
 	private IUsuarioRepository cR;
 	
 	@Override
-	public Integer insert(Usuario usuario) {
-		// TODO Auto-generated method stub
-		int rpta= cR.usuariosExistentes(usuario.getNameUsuario());
-		if(rpta==0) {
+	public Integer insert(Usuario usuario) 
+	{
+		int rpta= cR.usuariosExistentes(usuario.getDni());
+		if(rpta==0) 
+		{
 			cR.save(usuario);
-			
 		}
 		return rpta;
 
@@ -33,15 +33,5 @@ public class UsuarioServiceImplement implements IUsuarioService
 	public List<Usuario> list() 
 	{
 		return cR.findAll();
-	}
-
-	
-
-	@Override
-	@org.springframework.transaction.annotation.Transactional(readOnly = true)
-	public Usuario listarId(int idUsuario) {
-		// TODO Auto-generated method stub
-		Optional<Usuario> op=cR.findById(idUsuario);
-		return op.isPresent() ? op.get() : new Usuario();
 	}
 }

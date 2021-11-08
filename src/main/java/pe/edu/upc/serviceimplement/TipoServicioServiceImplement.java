@@ -1,6 +1,7 @@
 package pe.edu.upc.serviceimplement;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,25 @@ public class TipoServicioServiceImplement implements ITipoServicioService{
 	public List<TipoServicio> list() {
 		// TODO Auto-generated method stub
 		return tR.findAll();
+	}
+
+	@Override
+	public void delete(int idTiposervicio) {
+		// TODO Auto-generated method stub
+		tR.deleteById(idTiposervicio);
+		
+	}
+
+	@Override
+	public Optional<TipoServicio> listId(int idTiposervicio) {
+		// TODO Auto-generated method stub
+		return tR.findById(idTiposervicio);
+	}
+
+	@Override
+	public List<TipoServicio> findByNameTiposervicio(String name) {
+		// TODO Auto-generated method stub
+		return tR.findByNameTiposervicio(name);
 	}
 
 }

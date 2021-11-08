@@ -1,85 +1,78 @@
 package pe.edu.upc.entities;
 
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="Usuario")
-public class Usuario 
+public class Usuario implements Serializable
 {
+	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private int idUsuario;
+	private Long idUsuario;
 	
 	@Column(name = "foto", nullable = true)
 	private String photoUsuario;
 	
 	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Usuario no puede contener un número")
 	@Pattern(regexp = "[^0-9]+", message = "El nombre del Usuario no puede contener un número")
-	@Column(name = "nameUsuario", length = 35, nullable = false)
-	private String nameUsuario;
+	@Column(name = "fistnameUsuario", length = 35, nullable = true)
+	private String fistnameUsuario;
 	
-	@Column(name = "password", length = 35, nullable = false)
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Usuario no puede contener un número")
+	@Pattern(regexp = "[^0-9]+", message = "El nombre del Usuario no puede contener un número")
+	@Column(name = "lastnameUsuario", length = 35, nullable = true)
+	private String lastnameUsuario;
+	
+	@Column(name = "password", length = 255, nullable = true)
 	private String password;
 	
-	@Column(name = "correo", length = 35, nullable = false)
+	@Column(name = "correo", length = 35, nullable = true)
 	private String correo;
 	
 	@Pattern(regexp = "[^0]\\d{7}", message = "Ingrese DNI correctamente.")
-	@Column(name = "dni", nullable = false)
+	@Column(name = "dni", nullable = true)
 	private String dni;
 	
-	@ManyToOne
-	@JoinColumn(name = "idTipoUsuario", nullable = false)
-	private TipoUsuario tiposusuario;
+	private Boolean enabled;
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "usuario_id")
+	private List<TipoUsuario> tipousuarios;
 	
 	@ManyToOne
-	@JoinColumn(name = "idUbicacion", nullable = false)
+	@JoinColumn(name = "idUbicacion", nullable = true)
 	private Ubicacion ubicacion;
 	
 	@ManyToOne
-	@JoinColumn(name = "idCargo", nullable = false)
+	@JoinColumn(name = "idCargo", nullable = true)
 	private Cargo cargo;
 	
 	@ManyToOne
-	@JoinColumn(name = "idServicio", nullable = false)
+	@JoinColumn(name = "idServicio", nullable = true)
 	private Servicio servicio;
 
-	public Usuario() 
-	{
-		super();
-	}
-
-	public Usuario(int idUsuario, String photoUsuario,
-			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Usuario no puede contener un número") @Pattern(regexp = "[^0-9]+", message = "El nombre del Usuario no puede contener un número") String nameUsuario,
-			String password, String correo,
-			@Pattern(regexp = "[^0]\\d{7}", message = "Ingrese DNI correctamente.") String dni,
-			TipoUsuario tiposusuario, Ubicacion ubicacion, Cargo cargo, Servicio servicio) {
-		super();
-		this.idUsuario = idUsuario;
-		this.photoUsuario = photoUsuario;
-		this.nameUsuario = nameUsuario;
-		this.password = password;
-		this.correo = correo;
-		this.dni = dni;
-		this.tiposusuario = tiposusuario;
-		this.ubicacion = ubicacion;
-		this.cargo = cargo;
-		this.servicio = servicio;
-	}
-
-	public int getIdUsuario() {
+	public Long getIdUsuario() {
 		return idUsuario;
 	}
 
-	public void setIdUsuario(int idUsuario) {
+	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
@@ -91,12 +84,20 @@ public class Usuario
 		this.photoUsuario = photoUsuario;
 	}
 
-	public String getNameUsuario() {
-		return nameUsuario;
+	public String getFistnameUsuario() {
+		return fistnameUsuario;
 	}
 
-	public void setNameUsuario(String nameUsuario) {
-		this.nameUsuario = nameUsuario;
+	public void setFistnameUsuario(String fistnameUsuario) {
+		this.fistnameUsuario = fistnameUsuario;
+	}
+
+	public String getLastnameUsuario() {
+		return lastnameUsuario;
+	}
+
+	public void setLastnameUsuario(String lastnameUsuario) {
+		this.lastnameUsuario = lastnameUsuario;
 	}
 
 	public String getPassword() {
@@ -123,12 +124,12 @@ public class Usuario
 		this.dni = dni;
 	}
 
-	public TipoUsuario getTiposusuario() {
-		return tiposusuario;
+	public List<TipoUsuario> getTipousuarios() {
+		return tipousuarios;
 	}
 
-	public void setTiposusuario(TipoUsuario tiposusuario) {
-		this.tiposusuario = tiposusuario;
+	public void setTipousuarios(List<TipoUsuario> tipousuarios) {
+		this.tipousuarios = tipousuarios;
 	}
 
 	public Ubicacion getUbicacion() {
@@ -155,5 +156,12 @@ public class Usuario
 		this.servicio = servicio;
 	}
 
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
 	
 }

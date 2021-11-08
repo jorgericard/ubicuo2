@@ -27,10 +27,10 @@
 				<h3></h3>
 			</div>
 			<div class="col-3">
-				<h3>Registrar Alerta</h3>
+				<h3>Registrar Alerta Update</h3>
 			</div>
 			<div class="col-8 frm-registro">
-				<form th:action="@{/alertas/save}" method="post"
+				<form th:action="@{/alertas/saveUpdate}" method="post"
 					th:object="${alerta}">
 					<div class="form-group">
 
@@ -42,10 +42,9 @@
 								name="state" th:field="*{cEstados}">
 								<option th:value="${null}" selected>--Seleccione--</option>
 								<option th:each="t: ${listaEstados}" th:value="${t.cEstados}"
-									th:text="${t.nameEstados}" ></option>
-							</select>
-							<small class="form-text text-danger" th:if="${#fields.hasErrors('cEstados')}"
-                                    th:errors="*{cEstados}"></small>
+									th:text="${t.nameEstados}"></option>
+							</select> <small class="form-text text-danger"
+								th:if="${#fields.hasErrors('cEstados')}" th:errors="*{cEstados}"></small>
 						</div>
 
 						<br />
@@ -56,9 +55,9 @@
 								<option th:value="${null}" selected>--Seleccione--</option>
 								<option th:each="u: ${listaUsuariosAux}"
 									th:value="${u.idUsuario}" th:text="${u.nameUsuario}"></option>
-							</select>
-							<small class="form-text text-danger" th:if="${#fields.hasErrors('idUsuarioAux')}"
-                                    th:errors="*{idUsuarioAux}"></small>
+							</select> <small class="form-text text-danger"
+								th:if="${#fields.hasErrors('idUsuarioAux')}"
+								th:errors="*{idUsuarioAux}"></small>
 						</div>
 
 						<br />
@@ -69,25 +68,22 @@
 								<option th:value="${null}" selected>--Seleccione--</option>
 								<option th:each="u: ${listaUsuariosRes}"
 									th:value="${u.idUsuario}" th:text="${u.nameUsuario}"></option>
-							</select>
-							<small class="form-text text-danger" th:if="${#fields.hasErrors('idUsuarioRes')}"
-                                    th:errors="*{idUsuarioRes}"></small>
+							</select> <small class="form-text text-danger"
+								th:if="${#fields.hasErrors('idUsuarioRes')}"
+								th:errors="*{idUsuarioRes}"></small>
 						</div>
 
 						<br />
 
 						<div class="form-group row">
-                            <label for="fecha" class="col-sm-2 col-form-label">Fecha:</label>
-                            <div class="col-sm-6">
-                                <input type="text" th:field="*{fecha}"
-                                    class="form-control"
-                                    th:errorclass="'form-control alert-danger'" readonly/>
-                                <small
-                                    class="form-text text-danger"
-                                    th:if="${#fields.hasErrors('fecha')}"
-                                    th:errors="*{fecha}"></small>
-                            </div>
-                        </div>
+							<label for="fecha" class="col-sm-2 col-form-label">Fecha:</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{fecha}" class="form-control"
+									th:errorclass="'form-control alert-danger'" readonly /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></small>
+							</div>
+						</div>
 
 					</div>
 					<button type="submit" class="btn btn-warning">Aceptar</button>

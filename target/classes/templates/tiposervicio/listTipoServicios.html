@@ -25,20 +25,41 @@
 		<div class="content container">
 
 			<div class="d-flex">
+
 				<h3 class="title-content">Lista de Tipo de Servicios</h3>
-				<a th:href="@{/tiposervicios/new}" class="btn btn-warning">Nuevo</a>
+
+				<form th:action="@{/tiposervicios/search}" method="post"
+					th:object="${tiposervicio}">
+					<label for="nameTiposervicio">Buscar:</label> <input type="text"
+						required="required" class="form-control"
+						th:field="*{nameTiposervicio}" id="nameTiposervicio"></input>
+					<button type="submit" class="btn btn-danger">Buscar</button>
+					<a href="/tiposervicios/list" class="btn btn-light">Limpiar</a>
+				</form>
+
+				<a th:href="@{/tiposervicios/new}" class="btnnew btn btn-danger">Nuevo</a>
+
 			</div>
+
 			<table class="table">
 				<thead class="thead-light">
 					<tr>
 						<th scope="col" class="text-center">Código</th>
 						<th scope="col" class="text-center">Nombre</th>
+						<th scope="col" class="text-center">Operación</th>
+						<th scope="col" class="text-center">Operación</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="cat : ${listaTipoServicios}">
 						<td class="text-center" th:text="${cat.idTiposervicio}"></td>
 						<td class="text-center" th:text="${cat.nameTiposervicio}"></td>
+						<td class="text-center"><a
+							th:href="@{/tiposervicios/delete?id=}+${cat.idTiposervicio}"><i
+								class="iconf fa fa-trash" style="color: red"></i></a></td>
+						<td class="text-center"><a
+							th:href="@{'/tiposervicios/update/'+${cat.idTiposervicio}}"><i
+								class="iconf fa fa-pencil" style="color: red"></i></a></td>
 					</tr>
 				</tbody>
 			</table>

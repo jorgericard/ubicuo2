@@ -6,7 +6,7 @@ import org.springframework.data.repository.query.Param;
 
 import pe.edu.upc.entities.TipoUsuario;
 
-public interface ITipoUsuarioRepository extends JpaRepository<TipoUsuario, Integer>
+public interface ITipoUsuarioRepository extends JpaRepository<TipoUsuario, Long>
 {
 	@Query("select count(c.nameTipoUsuario) from TipoUsuario c where c.nameTipoUsuario=:name")
 	public int TipoUsuariosExistentes(@Param("name") String nombre);

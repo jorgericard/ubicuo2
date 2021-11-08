@@ -51,6 +51,7 @@ public class UsuarioController
 	
 	@Autowired
 	private IServicioService sS;
+	
 	@Autowired
 	private pe.edu.upc.serviceinterface.IUploadFileService uploadFileService;
 
@@ -59,7 +60,6 @@ public class UsuarioController
 	public String newusuario(Model model) 
 	{
 		model.addAttribute("usuario", new Usuario());
-		
 		model.addAttribute("listatipousuarios", iS.list());
 		model.addAttribute("listaubicacion", ubS.list());
 		model.addAttribute("listacargo", cS.list());
@@ -132,6 +132,7 @@ public class UsuarioController
 		return "redirect:/usuarios/list";
 		
 	}
+	
 	@GetMapping(value = "/uploads/{filename:.+}")
 	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
 
@@ -147,21 +148,6 @@ public class UsuarioController
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
 				.body(recurso);
 	}
-	@GetMapping(value = "/view/{id}")
-	public String view(@PathVariable(value = "id") int id, Map<String, Object> model, RedirectAttributes flash) {
-
-		Usuario usuario = usS.listarId(id);
-
-		if (usuario == null) {
-			flash.addFlashAttribute("error", "El producto no existe en la base de datos");
-			return "usuario/listUsuarios";
-		}
-
-		model.put("usuario", usuario);
-		model.put("titulo", "Detalle de producto: " + usuario.getNameUsuario());
-
-		return "usuario/ver";
-	}
 	
 	@RequestMapping("/list")
 	public String listUsuarios(Map<String, Object> model) {
@@ -170,27 +156,4 @@ public class UsuarioController
 
 	}
 
-	@RequestMapping("/listarId")
-	public String listarId(Map<String, Object> model, @ModelAttribute Usuario pro) {
-		usS.listarId(pro.getIdUsuario());
-		return "usuario/listUsuarios";
-
-	}
-
-	@RequestMapping("/update/{id}")
-	public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {
-
-		Usuario usuario = usS.listarId(id);
-		if (usuario == null) {
-			objRedir.addFlashAttribute("mensaje", "OcurriÃ³ un error");
-			return "redirect:/usuarios/list";
-		} else {
-			model.addAttribute("listatipousuarios",iS.list());
-			model.addAttribute("listaubicacion",ubS.list());
-			model.addAttribute("listacargo",cS.list());
-			model.addAttribute("listaservicio",sS.list());
-			model.addAttribute("usuario", usuario);
-			return "usuario/usuario";
-		}
-	}
 }
