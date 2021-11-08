@@ -51,6 +51,7 @@ public class UsuarioController
 	
 	@Autowired
 	private IServicioService sS;
+	
 	@Autowired
 	private pe.edu.upc.serviceinterface.IUploadFileService uploadFileService;
 
@@ -59,7 +60,6 @@ public class UsuarioController
 	public String newusuario(Model model) 
 	{
 		model.addAttribute("usuario", new Usuario());
-		
 		model.addAttribute("listatipousuarios", iS.list());
 		model.addAttribute("listaubicacion", ubS.list());
 		model.addAttribute("listacargo", cS.list());
