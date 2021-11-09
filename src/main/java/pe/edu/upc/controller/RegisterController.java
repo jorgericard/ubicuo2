@@ -19,6 +19,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import pe.edu.upc.entities.TipoUsuario;
 import pe.edu.upc.entities.Usuario;
 import pe.edu.upc.serviceinterface.ICargoService;
 import pe.edu.upc.serviceinterface.IServicioService;
@@ -77,7 +78,25 @@ public class RegisterController
 			usuario.setEnabled(true);
 			usuario.setIdUsuario(usuario.getIdUsuario());
 			
+			/*
+			try 
+			{
+				model.addAttribute("tipousuario", new TipoUsuario());
+			} 
+			catch (Exception e) 
+			{
+				model.addAttribute("error", e.getMessage());
+			}
+			
+			if(usuario.getCargo()==null && usuario.getServicio()==null)
+			{
+				
+				
+			}
+			*/
+			
 			int rpta = usS.insert(usuario);
+			
 			
 			if (rpta > 0) 
 			{
