@@ -1,6 +1,7 @@
 package pe.edu.upc.serviceimplement;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,18 @@ public class EstadosServiceImplement implements IEstadosService{
 	public List<Estados> list() {
 		// TODO Auto-generated method stub
 		return cR.findAll();
+	}
+
+	@Override
+	public void delete(int cEstados) {
+		// TODO Auto-generated method stub
+		cR.deleteById(cEstados);
+	}
+
+	@Override
+	public Optional<Estados> listId(int cEstados) {
+		// TODO Auto-generated method stub
+		return cR.findById(cEstados);
 	}
 
 }
