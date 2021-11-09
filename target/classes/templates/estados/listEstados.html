@@ -33,12 +33,20 @@
 					<tr>
 						<th scope="col" class="text-center">Código</th>
 						<th scope="col" class="text-center">Nombre</th>
+						<th scope="col" class="text-center">Eliminar</th>
+						<th scope="col" class="text-center">Modificar</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="es : ${listaEstados}">
 						<td class="text-center" th:text="${es.cEstados}"></td>
 						<td class="text-center" th:text="${es.nameEstados}"></td>
+						<td class="text-center"><a
+							th:href="@{/estadoss/delete?id=}+${es.cEstados}"><i
+								class="iconf fa fa-trash" style="color: red"></i></a></td>
+						<td class="text-center"><a
+							th:href="@{'/estadoss/update/'+${es.cEstados}}"><i
+								class="iconf fa fa-pencil" style="color: blue"></i></a></td>
 					</tr>
 				</tbody>
 			</table>
