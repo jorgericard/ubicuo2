@@ -46,7 +46,7 @@
 							th:errors="*{nameContacto}"></div>
 							
 						<div class="form-group">
-							<label for="numero">NUMERO:</label> <input type="text" required
+							<label for="numero">NUMERO:</label> <input type="tel" minlength="3" maxlength="9" required
 								th:field="*{numeroCelular}" class="form-control" id="nombre"></input>
 						</div>
 						<div class="alert alert-danger"
