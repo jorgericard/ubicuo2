@@ -1,5 +1,7 @@
 package pe.edu.upc.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import pe.edu.upc.entities.Estados;
 import pe.edu.upc.entities.TipoUsuario;
 import pe.edu.upc.serviceinterface.ITipoUsuarioService;
 
@@ -68,5 +74,27 @@ public class TipoUsuarioController
 		}
 		model.addAttribute("tipousuario", new TipoUsuario());
 		return "redirect:/tipousuarios/list";
+		
+		
+	}
+	
+	@RequestMapping("/delete")
+	public String deleteTipoUsuario(Model model, @RequestParam(value = "id") Integer id, @ModelAttribute("tipousuario") @Valid TipoUsuario tipousuario) {
+		cS.delete(id);
+		model.addAttribute("tipousuario", tipousuario);
+		model.addAttribute("listaTipoUsuarios", cS.list());
+		return "tipousuario/listTipoUsuarios";
+	}
+
+	@RequestMapping("/update/{id}")
+	public String updateTipoUsuario(@PathVariable int id, Model model, RedirectAttributes objRedirect) {
+		Optional<TipoUsuario> tipousuario = cS.listId(id);
+		if (tipousuario == null) {
+			objRedirect.addFlashAttribute("mensaje", "Ocurrio un error");
+			return "tipousuarios/tipousuarios";
+		} else {
+			model.addAttribute("tipousuario", tipousuario);
+			return "tipousuario/tipousuario";
+		}
 	}
 }
