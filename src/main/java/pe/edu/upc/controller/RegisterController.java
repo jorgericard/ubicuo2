@@ -114,5 +114,4 @@ public class RegisterController
 
 		return "login";
 	}
-	
 }

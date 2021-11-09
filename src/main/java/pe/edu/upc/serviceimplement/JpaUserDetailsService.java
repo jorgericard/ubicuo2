@@ -33,7 +33,7 @@ public class JpaUserDetailsService implements UserDetailsService
 		
 		for(TipoUsuario tipousuario : usuario.getTipousuarios())
 		{
-			authorities.add(new SimpleGrantedAuthority(tipousuario.getNameTipoUsuario()));
+			authorities.add(new SimpleGrantedAuthority(tipousuario.getRol()));
 		}
 		
 		return new User(usuario.getDni(),usuario.getPassword(),usuario.getEnabled(),true,true,true,authorities);

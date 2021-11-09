@@ -33,20 +33,16 @@
 					<tr>
 						<th scope="col" class="text-center">Código</th>
 						<th scope="col" class="text-center">Nombre</th>
-						<th scope="col" class="text-center">Eliminar</th>
-						<th scope="col" class="text-center">Modificar</th>
+						<th scope="col" class="text-center">Usuario</th>
+						<th scope="col" class="text-center">Rol</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="cat : ${listaTipoUsuarios}">
 						<td class="text-center" th:text="${cat.idTipoUsuario}"></td>
 						<td class="text-center" th:text="${cat.nameTipoUsuario}"></td>
-						<td class="text-center"><a
-							th:href="@{/tipousuarios/delete?id=}+${cat.idTipoUsuario}"><i
-								class="iconf fa fa-trash" style="color: red"></i></a></td>
-						<td class="text-center"><a
-							th:href="@{'/tipousuarios/update/'+${cat.idTipoUsuario}}"><i
-								class="iconf fa fa-pencil" style="color: blue"></i></a></td>
+						<td class="text-center" th:text="${cat.usuario.fistnameUsuario}"></td>
+						<td class="text-center" th:text="${cat.rol}"></td>
 					</tr>
 				</tbody>
 			</table>
