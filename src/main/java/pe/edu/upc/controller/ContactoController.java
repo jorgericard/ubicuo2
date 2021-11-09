@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -94,7 +95,7 @@ public class ContactoController {
 	@GetMapping(value = "/view/{id}")
 	public String view(@PathVariable(value = "id") int id, Map<String, Object> model, RedirectAttributes flash) {
 
-		Contacto contacto = cService.listarId(id);
+		Contacto contacto = cService.listId(id);
 
 		if (contacto == null) {
 			flash.addFlashAttribute("error", "El contacto no existe en la base de datos");
@@ -113,18 +114,26 @@ public class ContactoController {
 		return "contacto/listContactos";
 
 	}
-
+	
 	@RequestMapping("/listarId")
-	public String listarId(Map<String, Object> model, @ModelAttribute Contacto con) {
-		cService.listarId(con.getIdContacto());
+	public String listarId(Map<String, Object> model, @ModelAttribute Contacto pro) {
+		cService.listId(pro.getIdContacto());
 		return "contacto/listContactos";
 
+	}
+
+	@RequestMapping("/delete")
+	public String deleteContacto(Model model, @RequestParam(value = "id") Integer id, Contacto contacto) {
+		cService.delete(id);
+		model.addAttribute("contacto", contacto);
+		model.addAttribute("listaContactos", cService.list());
+		return "contacto/listContactos";
 	}
 
 	@RequestMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 
-		Contacto contacto = cService.listarId(id);
+		Contacto contacto = cService.listId(id);
 		if (contacto == null) {
 			objRedir.addFlashAttribute("mensaje", "OcurriÃ³ un error");
 			return "redirect:/contactos/list";

@@ -7,9 +7,8 @@ import pe.edu.upc.entities.Contacto;
 public interface IContactoService {
 	
 	public Integer insert(Contacto contacto);
-
 	List<Contacto> list();
-
-	Contacto listarId(int idContacto);
+	public void delete(int idContacto);
+	Contacto listId(int idContacto);
 
 }

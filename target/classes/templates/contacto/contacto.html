@@ -59,7 +59,7 @@
 							<label for="usuario">USUARIO:</label> <select
 								class="form-control" th:field="*{usuario.idUsuario}">
 								<option th:each="c: ${listaUsuarios}" th:value="${c.idUsuario}"
-									th:text="${c.nameUsuario}"
+									th:text="${c.fistnameUsuario}"
 									th:selected="(${c.idUsuario} == *{usuario.idUsuario})"></option>
 							</select>
 						</div>

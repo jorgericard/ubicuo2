@@ -31,11 +31,12 @@
 			<table class="table">
 				<thead class="thead-light">
 					<tr>
-						<th scope="col" class="text-center">ID</th>
-						<th scope="col" class="text-center">NOMBRE</th>
-						<th scope="col" class="text-center">CELULAR</th>
-						<th scope="col" class="text-center">USUARIO</th>
-						<th scope="col" class="text-center">OPERACIÓN</th>
+						<th scope="col" class="text-center">Código</th>
+						<th scope="col" class="text-center">Nombre</th>
+						<th scope="col" class="text-center">Celular</th>
+						<th scope="col" class="text-center">Usuario</th>
+						<th scope="col" class="text-center">Eliminar</th>
+						<th scope="col" class="text-center">Modificar</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -45,16 +46,21 @@
 							th:text="${p.idContacto}"></a></td>
 						<td class="text-center" th:text="${p.nameContacto}"></td>
 						<td class="text-center" th:text="${p.numeroCelular}"></td>
-						<td class="text-center" th:text="${p.usuario.nameUsuario}"></td>
-						<td class="text-center"><a th:href="@{'/contactos/update/' + ${p.idContacto}}"><i class="fa fa-edit" style="color: rgb(240, 184, 15)ing;"></i></a></td>
+						<td class="text-center" th:text="${p.usuario.fistnameUsuario}"></td>
+						<td class="text-center"><a
+							th:href="@{/contactos/delete?id=}+${p.idContacto}"><i
+								class="iconf fa fa-trash" style="color: red"></i></a></td>
+						<td class="text-center"><a
+							th:href="@{'/contactos/update/'+${p.idContacto}}"><i
+								class="iconf fa fa-pencil" style="color: blue"></i></a></td>
 					</tr>
 				</tbody>
 			</table>
 			<div th:if="${mensaje}" class="alert alert-danger">
-			<p th:text="${mensaje}"></p>
+				<p th:text="${mensaje}"></p>
+			</div>
 		</div>
-		</div>
-		
+
 
 	</div>
 
