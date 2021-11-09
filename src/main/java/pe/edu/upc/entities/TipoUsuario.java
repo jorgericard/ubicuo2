@@ -14,7 +14,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Pattern;
 
 @Entity
-@Table(name="TipoUsuario", uniqueConstraints = { @UniqueConstraint(columnNames = { "usuario_id", "nameTipoUsuario" }) })
+@Table(name="TipoUsuario", uniqueConstraints = { @UniqueConstraint(columnNames = { "usuario_id", "rol" }) })
 public class TipoUsuario implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -23,11 +23,12 @@ public class TipoUsuario implements Serializable
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idTipoUsuario;
 	
-	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del TipoUsuario no puede contener un número")
-	@Pattern(regexp = "[^0-9]+", message = "El nombre del TipoUsuario no puede contener un número")
-	@Column(name = "nameTipoUsuario", length = 35, nullable = false)
-	private String nameTipoUsuario;
+	private String rol;
 
+	@ManyToOne
+	@JoinColumn(name = "usuario_id", nullable = false)
+	private Usuario usuario;
+	
 	public int getIdTipoUsuario() {
 		return idTipoUsuario;
 	}
@@ -36,11 +37,19 @@ public class TipoUsuario implements Serializable
 		this.idTipoUsuario = idTipoUsuario;
 	}
 
-	public String getNameTipoUsuario() {
-		return nameTipoUsuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setNameTipoUsuario(String nameTipoUsuario) {
-		this.nameTipoUsuario = nameTipoUsuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
 	}
 }

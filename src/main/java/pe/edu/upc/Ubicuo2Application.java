@@ -35,5 +35,4 @@ public class Ubicuo2Application implements CommandLineRunner
 			System.out.println(bcryptPassword);
 		}
 	}
-
 }

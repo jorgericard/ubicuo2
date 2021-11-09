@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entities.TipoUsuario;
+import pe.edu.upc.serviceinterface.IUsuarioService;
 import pe.edu.upc.serviceinterface.ITipoUsuarioService;
 
 @Controller
@@ -20,12 +21,15 @@ import pe.edu.upc.serviceinterface.ITipoUsuarioService;
 public class TipoUsuarioController 
 {
 	@Autowired
+	private IUsuarioService uService;
+	@Autowired
 	private ITipoUsuarioService cS;
 	
 	@GetMapping("/new")
 	public String newtipousuario(Model model) 
 	{
 		model.addAttribute("tipousuario", new TipoUsuario());
+		model.addAttribute("listaUsuarios", uService.list());
 		return "tipousuario/tipousuario";
 	}
 	
@@ -45,28 +49,18 @@ public class TipoUsuarioController
 	}
 	
 	@PostMapping("/save")
-	public String saveMarca(@ModelAttribute("tipousuario") @Valid TipoUsuario tipousuario, BindingResult result, Model model, SessionStatus status) 
-			throws Exception 
-	{
-		if (result.hasErrors()) 
-		{
+	public String saveRole(@Valid TipoUsuario tipoUsuario, BindingResult result, Model model, SessionStatus status) throws Exception {
+		if (result.hasErrors()) {
 			return "tipousuario/tipousuario";
-		} 
-		else 
-		{
-			int rpta = cS.insert(tipousuario);
-			if (rpta > 0) 
-			{
-				model.addAttribute("mensaje", "Ya existe, ingrese un nuevo tipo de usuario");
-				return "tipousuario/tipousuario";
-			} 
-			else 
-			{
-				model.addAttribute("mensaje", "Se guardó correctamente");
-				status.setComplete();
-			}
+		} else {
+		cS.insert(tipoUsuario);
+			model.addAttribute("mensaje", "Se guardó correctamente");
+			status.setComplete();
 		}
-		model.addAttribute("tipousuario", new TipoUsuario());
-		return "redirect:/tipousuarios/list";
+		model.addAttribute("listaRoles", cS.list());
+
+		return "tipousuario/tipousuario";
+
 	}
+
 }

@@ -6,7 +6,7 @@ import pe.edu.upc.entities.TipoUsuario;
 
 public interface ITipoUsuarioService 
 {
-	public Integer insert(TipoUsuario TipoUsuario);
+	public void insert(TipoUsuario TipoUsuario);
 	
 	List<TipoUsuario> list();
 }
