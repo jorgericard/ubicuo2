@@ -55,7 +55,7 @@
 								class="form-control" name="state" th:field="*{idUsuarioAux}">
 								<option th:value="${null}" selected>--Seleccione--</option>
 								<option th:each="u: ${listaUsuariosAux}"
-									th:value="${u.idUsuario}" th:text="${u.nameUsuario}"></option>
+									th:value="${u.idUsuario}" th:text="${u.fistnameUsuario + ' ' + u.lastnameUsuario}"></option>
 							</select>
 							<small class="form-text text-danger" th:if="${#fields.hasErrors('idUsuarioAux')}"
                                     th:errors="*{idUsuarioAux}"></small>
@@ -68,7 +68,7 @@
 								class="form-control" name="state" th:field="*{idUsuarioRes}">
 								<option th:value="${null}" selected>--Seleccione--</option>
 								<option th:each="u: ${listaUsuariosRes}"
-									th:value="${u.idUsuario}" th:text="${u.nameUsuario}"></option>
+									th:value="${u.idUsuario}" th:text="${u.fistnameUsuario + ' ' + u.lastnameUsuario}"></option>
 							</select>
 							<small class="form-text text-danger" th:if="${#fields.hasErrors('idUsuarioRes')}"
                                     th:errors="*{idUsuarioRes}"></small>

@@ -44,8 +44,8 @@
 					<tr th:each="cat : ${listaAlertas}">
 						<td class="text-center" th:text="${cat.idAlerta}"></td>
 						<td class="text-center" th:text="${cat.cEstados.nameEstados}"></td>
-						<td class="text-center" th:text="${cat.idUsuarioAux.nameUsuario}"></td>
-						<td class="text-center" th:text="${cat.idUsuarioRes.nameUsuario}"></td>
+						<td class="text-center" th:text="${cat.idUsuarioAux.fistnameUsuario + ' ' + cat.idUsuarioAux.lastnameUsuario}"></td>
+						<td class="text-center" th:text="${cat.idUsuarioRes.fistnameUsuario + ' ' + cat.idUsuarioRes.lastnameUsuario}"></td>
 						<td class="text-center" th:text="${#dates.format(cat.fecha, 'dd-MMM-yyyy HH:mm:ss')}"></td>
 						<td class="text-center"><a
 							th:href="@{/alertas/delete?id=}+${cat.idAlerta}"><i
