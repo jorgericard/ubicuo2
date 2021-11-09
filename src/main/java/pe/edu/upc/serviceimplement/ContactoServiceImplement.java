@@ -3,9 +3,10 @@ package pe.edu.upc.serviceimplement;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import javax.transaction.Transactional;
 
 import pe.edu.upc.entities.Contacto;
 import pe.edu.upc.repositories.IContactoRepository;
@@ -34,12 +35,20 @@ public class ContactoServiceImplement implements IContactoService{
 	}
 
 	@Override
-	@Transactional
-	public Contacto listarId(int idContacto) {
+	public void delete(int idContacto) {
 		// TODO Auto-generated method stub
-		Optional<Contacto> op = cR.findById(idContacto);
+		cR.deleteById(idContacto);
+	}
+
+	@Override
+	@Transactional
+	public Contacto listId(int idContacto) {
+		// TODO Auto-generated method stub
+		Optional<Contacto> op= cR.findById(idContacto);	
 		return op.isPresent() ? op.get() : new Contacto();
 	}
+
+
 
 
 }
