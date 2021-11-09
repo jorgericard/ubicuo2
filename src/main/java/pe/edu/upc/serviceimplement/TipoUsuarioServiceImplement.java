@@ -28,15 +28,15 @@ public class TipoUsuarioServiceImplement implements ITipoUsuarioService {
 	}
 	
 	@Override
-	public void delete(int cTipoUsuario) {
+	public void delete(int idTipoUsuario) {
 		// TODO Auto-generated method stub
-		cR.deleteById(cTipoUsuario);
+		cR.deleteById(idTipoUsuario);
 	}
 
 	@Override
-	public Optional<TipoUsuario> listId(int cTipoUsuario) {
+	public Optional<TipoUsuario> listId(int idTipoUsuario) {
 		// TODO Auto-generated method stub
-		return cR.findById(cTipoUsuario);
+		return cR.findById(idTipoUsuario);
 	}
 	
 }
