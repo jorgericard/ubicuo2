@@ -32,7 +32,6 @@
 				<thead class="thead-light">
 					<tr>
 						<th scope="col" class="text-center">Código</th>
-						<th scope="col" class="text-center">Nombre</th>
 						<th scope="col" class="text-center">Usuario</th>
 						<th scope="col" class="text-center">Rol</th>
 					</tr>
@@ -40,7 +39,6 @@
 				<tbody>
 					<tr th:each="cat : ${listaTipoUsuarios}">
 						<td class="text-center" th:text="${cat.idTipoUsuario}"></td>
-						<td class="text-center" th:text="${cat.nameTipoUsuario}"></td>
 						<td class="text-center" th:text="${cat.usuario.fistnameUsuario}"></td>
 						<td class="text-center" th:text="${cat.rol}"></td>
 					</tr>
