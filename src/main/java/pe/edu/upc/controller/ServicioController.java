@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Servicio;
+import pe.edu.upc.entities.Ubicacion;
 import pe.edu.upc.serviceinterface.IDistritoService;
 import pe.edu.upc.serviceinterface.IServicioService;
 import pe.edu.upc.serviceinterface.ITipoServicioService;
@@ -130,6 +132,13 @@ public class ServicioController {
 		sService.listarId(pro.getIdServicio());
 		return "servicio/listServicios";
 
+	}
+	@RequestMapping("/delete")
+	public String deleteServicio(Model model, @RequestParam(value = "id") Integer id, Servicio servicio) {
+		sService.delete(id);
+		model.addAttribute("servicio",servicio);
+		model.addAttribute("listaServicios", sService.list());
+		return "servicio/servicio";
 	}
 	@RequestMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {

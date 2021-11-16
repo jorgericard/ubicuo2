@@ -43,6 +43,18 @@ public class ServiciosServiceImplement implements IServicioService{
 		Optional<Servicio> op= sR.findById(idServicio);	
 		return op.isPresent() ? op.get() : new Servicio();
 	}
+
+	@Override
+	public void delete(int idServicio) {
+		// TODO Auto-generated method stub
+		sR.deleteById(idServicio);
+	}
+
+	@Override
+	public Optional<Servicio> listId(int idServicio) {
+		// TODO Auto-generated method stub
+		return sR.findById(idServicio);
+	}
 	
 	
 }
