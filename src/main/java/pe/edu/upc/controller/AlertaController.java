@@ -1,5 +1,6 @@
 package pe.edu.upc.controller;
 
+import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -132,6 +133,12 @@ public class AlertaController {
 			model.addAttribute("alerta", alerta);
 			return "alerta/alertaUpdate";
 		}
+	}
+	
+	@RequestMapping("/reporte4")
+	public String RescatistaAlertas(Map<String, Object> model) {
+		model.put("listaRescatistaalertas", aS.RescatistaAlertas());
+		return "reports/listAlertas";
 	}
 
 }
