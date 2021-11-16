@@ -37,6 +37,7 @@
 						<th scope="col" class="text-center">Num Telef</th>
 						<th scope="col" class="text-center">DISTRITO</th>
 						<th scope="col" class="text-center">TIPOSERVICIO</th>
+						<th scope="col" class="text-center">Eliminar</th>
 						<th scope="col" class="text-center">OPERACIÓN</th>
 					
 					</tr>
@@ -50,6 +51,9 @@
 						<td class="text-center" th:text="${p.numtelef}"></td>
 						<td class="text-center" th:text="${p.distrito.nameDistrito}"></td>
 						<td class="text-center" th:text="${p.tipoServicio.nameTiposervicio}"></td>
+						<td class="text-center"><a
+							th:href="@{/servicios/delete?id=}+${p.idServicio}"><i
+								class="iconf fa fa-trash" style="color: red"></i></a></td>
 						<td class="text-center"><a th:href="@{'/servicios/update/' + ${p.idServicio}}">Modificar</a></td>
 						
 					</tr>
