@@ -16,4 +16,6 @@ public interface IAlertaService {
 	public void delete(int idAlerta);
 	
 	Optional<Alerta> listId(int idAlerta);
+	
+	public List<String[]> RescatistaAlertas();
 }
