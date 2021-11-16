@@ -10,5 +10,6 @@ public interface IContactoService {
 	List<Contacto> list();
 	public void delete(int idContacto);
 	Contacto listId(int idContacto);
+	public List<String[]> contactByUser();
 
 }

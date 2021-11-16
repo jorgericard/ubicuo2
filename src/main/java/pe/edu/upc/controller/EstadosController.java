@@ -1,5 +1,8 @@
 package pe.edu.upc.controller;
 
+import java.text.ParseException;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,7 +66,7 @@ public class EstadosController {
 	}
 
 	@RequestMapping("/delete")
-	public String deleteEstados(Model model, @RequestParam(value = "id") Integer id, Estados estados) {
+	public String deleteEstados(Model model, @RequestParam(value = "id") int id, Estados estados) {
 		cService.delete(id);
 		model.addAttribute("estados", estados);
 		model.addAttribute("listaEstados", cService.list());
