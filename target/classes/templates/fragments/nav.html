@@ -18,15 +18,16 @@
 		<h2 class="col-lg-9">Ubicuo</h2>
 
 		<div class="p-0 d-flex flex-row col-lg-3 info-der row">
-			<div class="col-2 d-flex">
-				<i id="icon-user" class="fa fa-user-circle"></i>
-			</div>
+			
 			<div class="user-info col-8">
 			</div>
-			<div class="col-2">
-				<i id="icon-salir" class="fa fa-power-off"></i>
-
-			</div>
+			<form id="logoutForm" th:action="@{/logout}" method="post">
+				<div class="col-2">
+					<button class="btn btn-danger" onclick="document.getElementById('logoutForm').submit();" type="submit">
+					<i class="fa fa-power-off" aria-hidden="true"style="color: #fff;">Cerrar</i>
+					</button>
+				</div>
+			</form>
 		</div>
 	</div>
 
