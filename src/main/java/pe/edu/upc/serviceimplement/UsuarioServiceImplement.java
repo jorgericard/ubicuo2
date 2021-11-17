@@ -34,4 +34,10 @@ public class UsuarioServiceImplement implements IUsuarioService
 	{
 		return cR.findAll();
 	}
+
+	@Override
+	public void delete(Long idUsuario) 
+	{
+		cR.deleteById(idUsuario);
+	}
 }
