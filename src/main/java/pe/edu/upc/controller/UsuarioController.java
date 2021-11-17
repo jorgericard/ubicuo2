@@ -88,9 +88,8 @@ public class UsuarioController
 	}
 	
 	@RequestMapping("/save")
-	public String saveMarca(@Valid Usuario usuario, BindingResult binRes, Model model,
-			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) 
-			throws ParseException	{
+	public String saveMarca(@Valid Usuario usuario, BindingResult binRes, Model model, @RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) throws ParseException	
+	{
 		if (binRes.hasErrors()) 
 		{
 			model.addAttribute("listaTipoUsuarios",iS.list());
@@ -106,33 +105,40 @@ public class UsuarioController
 			usuario.setEnabled(true);
 			usuario.setIdUsuario(usuario.getIdUsuario());
 			
-			if (!foto.isEmpty()) {
+			if (!foto.isEmpty()) 
+			{
 
-				if (usuario.getIdUsuario() > 0 && usuario.getPhotoUsuario()!= null
-						&& usuario.getPhotoUsuario().length() > 0) {
-
+				if (usuario.getIdUsuario() > 0 && usuario.getPhotoUsuario()!= null && usuario.getPhotoUsuario().length() > 0) 
+				{
 					uploadFileService.delete(usuario.getPhotoUsuario());
 				}
 
 				String uniqueFilename = null;
-				try {
+				try 
+				{
 					uniqueFilename = uploadFileService.copy(foto);
-				} catch (IOException e) {
+				} 
+				catch (IOException e) 
+				{
 					e.printStackTrace();
 				}
 
 				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
 				usuario.setPhotoUsuario(uniqueFilename);
 			}
+			
 			int rpta = usS.insert(usuario);
-			if (rpta > 0) {
+			if (rpta > 0) 
+			{
 				model.addAttribute("mensaje", "Ya existe, ingrese un Nuevo Nombre");
 				model.addAttribute("listatipousuarios", iS.list());
 				model.addAttribute("listaubicacion", ubS.list());
 				model.addAttribute("listacargo", cS.list());
 				model.addAttribute("listaservicio", sS.list());
 				return "usuario/usuario";
-			} else {
+			} 
+			else 
+			{
 				model.addAttribute("mensaje", "Se guardo correctamente");
 				status.setComplete();
 			}
@@ -143,26 +149,35 @@ public class UsuarioController
 	}
 	
 	@GetMapping(value = "/uploads/{filename:.+}")
-	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
-
+	public ResponseEntity<Resource> verFoto(@PathVariable String filename) 
+	{
 		Resource recurso = null;
 
-		try {
+		try 
+		{
 			recurso = uploadFileService.load(filename);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
+		} 
+		catch (MalformedURLException e) 
+		{
 			e.printStackTrace();
 		}
-		return ResponseEntity.ok()
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
-				.body(recurso);
+		
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"").body(recurso);
 	}
 	
 	@RequestMapping("/list")
-	public String listUsuarios(Map<String, Object> model) {
+	public String listUsuarios(Map<String, Object> model) 
+	{
 		model.put("listaUsuarios", usS.list());
 		return "usuario/listUsuarios";
-
+	}
+	
+	@RequestMapping("/delete")
+	public String deleteUsuario(Model model, @RequestParam(value="id") Long id)
+	{
+		usS.delete(id);
+		model.addAttribute("listaUsuarios",usS.list());
+		return "usuario/listUsuarios";
 	}
 
 }
