@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,6 +38,9 @@ import pe.edu.upc.serviceinterface.IUsuarioService;
 @RequestMapping("/usuarios")
 public class UsuarioController 
 {
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
 	@Autowired
 	private IUsuarioService usS;
 	
@@ -97,6 +101,11 @@ public class UsuarioController
 		} 
 		else 
 		{
+			String bcryptPassword = passwordEncoder.encode(usuario.getPassword());
+			usuario.setPassword(bcryptPassword);
+			usuario.setEnabled(true);
+			usuario.setIdUsuario(usuario.getIdUsuario());
+			
 			if (!foto.isEmpty()) {
 
 				if (usuario.getIdUsuario() > 0 && usuario.getPhotoUsuario()!= null

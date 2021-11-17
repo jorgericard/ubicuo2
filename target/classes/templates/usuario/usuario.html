@@ -40,11 +40,21 @@
 						<br/>
 
 						<div class="form-group">
-							<label for="nombre_apellido">Nombre y apellido:</label> <input type="text" required
-								th:field="*{nameUsuario}" class="form-control" id="nombre_apellido"></input>
+							<label for="nombres">Nombres:</label> <input type="text" required
+								th:field="*{fistnameUsuario}" class="form-control" id="nombres"></input>
 							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('nameUsuario')}"
-								th:errors="*{nameUsuario}"></div>
+								th:if="${#fields.hasErrors('fistnameUsuario')}"
+								th:errors="*{fistnameUsuario}"></div>
+						</div>
+						
+						<br/>
+						
+						<div class="form-group">
+							<label for="apellidos">Apellidos:</label> <input type="text" required
+								th:field="*{lastnameUsuario}" class="form-control" id="apellidos"></input>
+							<div class="alert alert-danger"
+								th:if="${#fields.hasErrors('lastnameUsuario')}"
+								th:errors="*{lastnameUsuario}"></div>
 						</div>
 						
 						<br/>
@@ -75,28 +85,6 @@
 							<div class="alert alert-danger"
 								th:if="${#fields.hasErrors('dni')}"
 								th:errors="*{dni}"></div>
-						</div>
-						
-						<br/>
-						
-						<div class="form-group">
-							<label for="tipousuario">Tipo usuario:</label> <select
-								class="form-control" th:field="*{tiposusuario.idTipoUsuario}">
-								<option th:each="t: ${listatipousuarios}"
-									th:value="${t.idTipoUsuario}" th:text="${t.nameTipoUsuario}"
-									th:selected="(${t.idTipoUsuario} == *{tiposusuario.idTipoUsuario})"></option>
-							</select>
-						</div>
-						
-						<br/>
-						
-						<div class="form-group">
-							<label for="ubicacion">Ubicación:</label> <select
-								class="form-control" th:field="*{ubicacion.idUbicacion}">
-								<option th:each="u: ${listaubicacion}"
-									th:value="${u.idUbicacion}" th:text="${u.nlongitud}"
-									th:selected="(${u.idUbicacion} == *{ubicacion.idUbicacion})"></option>
-							</select>
 						</div>
 						
 						<br/>
