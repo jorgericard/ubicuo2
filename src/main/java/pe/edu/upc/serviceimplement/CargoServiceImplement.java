@@ -50,5 +50,12 @@ public class CargoServiceImplement implements ICargoService
 	{
 		return cR.findAll();
 	}
+
+	@Override
+	public List<String[]> cargoTopQuantityUsser() 
+	{
+		
+		return cR.cargoTopQuantityUsser();
+	}
 	
 }

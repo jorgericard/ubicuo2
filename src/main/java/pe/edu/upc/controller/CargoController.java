@@ -1,6 +1,7 @@
 package pe.edu.upc.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -110,4 +111,16 @@ public class CargoController
 		return "cargo/listCargos";
 	}
 	
+	@RequestMapping("/reporte1")
+	public String cargoTopQuantityUsser(Map<String, Object> model)
+	{
+		model.put("listaCargosReporte",cS.cargoTopQuantityUsser());
+		return "/reports/listCargo";
+	}
+	
+	@RequestMapping("/reportes")
+	public String todosreportes()
+	{
+		return "/reports/reports";
+	}
 }
