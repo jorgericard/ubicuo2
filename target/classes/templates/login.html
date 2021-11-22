@@ -9,6 +9,7 @@
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
 <link rel="stylesheet" th:href="@{/css/style_login.css}" />
+<script src="/js/filtros.js"></script>
 </head>
 
 <body>
@@ -20,7 +21,7 @@
 		<form th:action="@{/login}" method="post">
 
 			<!-- DNI -->
-			<label for="dni">DNI</label> <input type="text" name="username"
+			<label for="dni">DNI</label> <input type="text" onkeypress="return SoloNumeros(event);" maxlength="8" name="username"
 				id="username" placeholder="Ingresa tu dni" required>
 
 			<!-- PASSWORD -->
