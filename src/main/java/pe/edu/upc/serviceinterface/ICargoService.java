@@ -16,4 +16,6 @@ public interface ICargoService
 	List<Cargo> findByNameCargo(String name);
 	
 	List<Cargo> list();
+	
+	public List<String[]> cargoTopQuantityUsser();
 }
