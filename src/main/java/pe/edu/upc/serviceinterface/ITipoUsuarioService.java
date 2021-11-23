@@ -8,7 +8,7 @@ import pe.edu.upc.entities.TipoUsuario;
 
 public interface ITipoUsuarioService 
 {
-	public void insert(TipoUsuario TipoUsuario);
+	public Integer insert(TipoUsuario TipoUsuario);
 	
 	List<TipoUsuario> list();
 	public void delete(int idTipoUsuario);	
