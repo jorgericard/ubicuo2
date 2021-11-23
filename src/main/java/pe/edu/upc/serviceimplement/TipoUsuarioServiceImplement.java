@@ -25,7 +25,7 @@ public class TipoUsuarioServiceImplement implements ITipoUsuarioService {
 		}
 		return rpta;
 	}
-
+	
 	@Override
 	public List<TipoUsuario> list() {
 		return cR.findAll();

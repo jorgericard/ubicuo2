@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entities.TipoUsuario;
@@ -66,6 +67,14 @@ public class TipoUsuarioController {
 
 		return "redirect:/tipousuarios/list";
 
+	}
+	
+	@RequestMapping("/delete")
+	public String deletetipousuario(Model model, @RequestParam(value="id") Integer id ) 
+	{
+		cS.delete(id);
+		model.addAttribute("listaCargos", cS.list());
+		return "redirect:/tipousuarios/list";
 	}
 
 }
