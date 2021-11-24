@@ -172,12 +172,35 @@ public class UsuarioController
 		return "usuario/listUsuarios";
 	}
 	
+	@RequestMapping("/listarId")
+	public String listarId(Map<String, Object> model, @ModelAttribute Usuario pro) {
+		usS.listarId(pro.getIdUsuario());
+		return "usuario/listUsuarios";
+	}
+
+	
 	@RequestMapping("/delete")
-	public String deleteUsuario(Model model, @RequestParam(value="id") Long id)
+	public String deleteUsuario(Model model, @RequestParam(value="id") int id)
 	{
 		usS.delete(id);
 		model.addAttribute("listaUsuarios",usS.list());
 		return "usuario/listUsuarios";
+	}
+	
+	@GetMapping(value = "/view/{id}")
+	public String view(@PathVariable(value = "id") int id, Map<String, Object> model, RedirectAttributes flash) {
+
+		Usuario usuario = usS.listarId(id);
+
+		if (usuario == null) {
+			flash.addFlashAttribute("error", "El producto no existe en la base de datos");
+			return "usuario/listUsuarios";
+		}
+
+		model.put("usuario", usuario);
+		model.put("titulo", "Detalle de producto: " + usuario.getFistnameUsuario());
+
+		return "usuario/ver";
 	}
 
 }
