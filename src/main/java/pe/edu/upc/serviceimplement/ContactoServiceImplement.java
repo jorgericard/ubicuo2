@@ -48,6 +48,12 @@ public class ContactoServiceImplement implements IContactoService{
 		return op.isPresent() ? op.get() : new Contacto();
 	}
 
+	@Override
+	public List<String[]> contactByUser() {
+		// TODO Auto-generated method stub
+		return cR.contactByUser();
+	}
+
 
 
 

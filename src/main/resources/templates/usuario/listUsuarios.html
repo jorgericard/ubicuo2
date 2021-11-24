@@ -24,42 +24,47 @@
 
 		<div class="content container">
 
+			<!--
 			<div class="d-flex">
 				<h3 class="title-content">Lista de Usuarios</h3>
 				<a th:href="@{/usuarios/new}" class="btn btn-warning">Nuevo</a>
 			</div>
+			-->	
+			<br/>
+			
 			<table class="table">
 				<thead class="thead-light">
 					<tr>
 						<th scope="col" class="text-center">Código</th>
-						<th scope="col" class="text-center">Nombre y Apellido</th>
-						
-						
+						<th scope="col" class="text-center">Nombres</th>
+						<th scope="col" class="text-center">Apellidos</th>
+						<th scope="col" class="text-center">Correo</th>
 						<th scope="col" class="text-center">DNI</th>
-						<th scope="col" class="text-center">Tipo usuario</th>
-						
-					
+						<th scope="col" class="text-center">Cargo</th>
 						<th scope="col" class="text-center">Servicio</th>
-
+						<th scope="col" class="text-center">Eliminar</th>
+						<th scope="col" class="text-center">Actualizar</th>
 						<th scope="col" class="text-center">DETALLE</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="cat : ${listaUsuarios}">
 						<td class="text-center" th:text="${cat.idUsuario}"></td>
-						<td class="text-center" th:text="${cat.nameUsuario}"></td>
-					
-					
+						<td class="text-center" th:text="${cat.fistnameUsuario}"></td>
+						<td class="text-center" th:text="${cat.lastnameUsuario}"></td>
+						<td class="text-center" th:text="${cat.correo}"></td>
 						<td class="text-center" th:text="${cat.dni}"></td>
-						<td class="text-center" th:text="${cat.tiposusuario.nameTipoUsuario}"></td>
-						
+						<td class="text-center" th:text="${cat.cargo.nameCargo}"></td>
 						<td class="text-center" th:text="${cat.servicio.nameServicio}"></td>
+						<td class="text-center"><a th:href="@{/usuarios/delete?id=}+${cat.idUsuario}"><i class="iconf fa fa-trash" style="color:red"></i></a></td>
 						
+						<!--
 						<td class="text-center" align="center"><a
 							th:href="@{/usuarios/view/} + ${cat.idUsuario}">
-							
 							Ver Detalle
 							</a></td>
+						-->	
+							
 					</tr>
 				</tbody>
 			</table>

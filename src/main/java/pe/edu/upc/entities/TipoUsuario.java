@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="TipoUsuario", uniqueConstraints = { @UniqueConstraint(columnNames = { "usuario_id", "rol" }) })
@@ -24,6 +25,7 @@ public class TipoUsuario implements Serializable
 	private String rol;
 
 	@ManyToOne
+	@NotNull(message = "El usuario ya tiene rol")
 	@JoinColumn(name = "usuario_id", nullable = false)
 	private Usuario usuario;
 	

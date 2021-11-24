@@ -143,5 +143,11 @@ public class ContactoController {
 			return "contacto/contacto";
 		}
 	}
+	
+	@RequestMapping("/reporteContacto")
+	public String contactoXUser(Map<String, Object> model) {
+		model.put("listContactXUsr", cService.contactByUser());
+		return "contacto/contactoXUser";
+	}
 
 }

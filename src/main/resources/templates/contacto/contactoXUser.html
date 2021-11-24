@@ -22,62 +22,35 @@
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
-		<div class="content container row col-12">
-			<div class="col-1">
-				<h3></h3>
+		<div class="content container">
+
+			<div class="cinforeport">
+				<h3 class="title-content">Contactos por usuario</h3>
+				<p class="inforeport">Lista de la cantidad de contactos que un usuario
+					tiene</p>
 			</div>
-			<div class="col-3">
-				<h3>Registrar TipoUsuario</h3>
-			</div>
-			<div class="col-8 frm-registro">
-				<form th:action="@{/tipousuarios/save}" method="post"
-					th:object="${tipousuario}">
-					<div class="form-group">
-						<label>ID:</label>
-						<div class="col-sm-6">
-							<select name="select" th:field="*{rol}"
-								class="custom-select custom-select-sm">
-								<option value="ROLE_USER" selected>Usuario</option>
-								<option value="ROLE_ADMIN">Administrador</option>
-							</select>
-							<small class="form-text text-danger" th:if="${#fields.hasErrors('rol')}"
-                                    th:errors="*{rol}"></small>
-						</div>
-
-						<div class="form-group">
-							<label for="nombre">Usuario:</label>
-							<div class="col-sm-6">
-								<select class="custom-select custom-select-sm"
-									th:field="*{usuario}">
-									<option th:each="u : ${listaUsuarios}"
-										th:value="${u.idUsuario}" th:utext="${u.dni}" />
-								</select> 
-								
-								<small class="form-text text-danger"
-									th:if="${#fields.hasErrors('usuario')}"
-									th:errors="*{usuario}"></small>
-							</div>
-
-						</div>
-
-					</div>
-					<button type="submit" class="btn btn-warning">Aceptar</button>
-					<a href="/tipousuarios/list" class="btn btn-light">Cancelar</a>
-
-				</form>
-				<div th:if="${mensaje}" class="alert alert-danger">
-					<p th:text="${mensaje}"></p>
-				</div>
-			</div>
+			<table class="table">
+				<thead class="thead-light">
+					<tr>
+						<th scope="col" class="text-center">Usuario</th>
+						<th scope="col" class="text-center">Nº Contactos</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="rep : ${listContactXUsr}">
+						<td class="text-center" th:text="${rep[0]}"></td>
+						<td class="text-center" th:text="${rep[1]}"></td>
+					</tr>
+				</tbody>
+			</table>
 
 		</div>
-	</div>
 
 
-	<script src="/js/popper.min.js"></script>
-	<script src="/js/jquery-3.3.1.slim.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/dive.js"></script>
+		<script src="/js/popper.min.js"></script>
+		<script src="/js/jquery-3.3.1.slim.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/dive.js"></script>
 </body>
 
 </html>

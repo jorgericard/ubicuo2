@@ -14,19 +14,23 @@ import pe.edu.upc.serviceinterface.ITipoUsuarioService;
 public class TipoUsuarioServiceImplement implements ITipoUsuarioService {
 	@Autowired
 	private ITipoUsuarioRepository cR;
-	
-	@Override
-	public void insert(TipoUsuario TipoUsuario) 
-	{
-		cR.save(TipoUsuario);
-	}
 
 	@Override
-	public List<TipoUsuario> list() 
-	{
-		return cR.findAll();
+	public Integer insert(TipoUsuario TipoUsuario) {
+		// TODO Auto-generated method stub
+		int rpta = cR.TipoUsuariosExistentes(TipoUsuario.getUsuario());
+		if (rpta == 0) {
+			cR.save(TipoUsuario);
+
+		}
+		return rpta;
 	}
 	
+	@Override
+	public List<TipoUsuario> list() {
+		return cR.findAll();
+	}
+
 	@Override
 	public void delete(int idTipoUsuario) {
 		// TODO Auto-generated method stub
@@ -38,5 +42,5 @@ public class TipoUsuarioServiceImplement implements ITipoUsuarioService {
 		// TODO Auto-generated method stub
 		return cR.findById(idTipoUsuario);
 	}
-	
+
 }

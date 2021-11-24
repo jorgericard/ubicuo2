@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,6 +38,9 @@ import pe.edu.upc.serviceinterface.IUsuarioService;
 @RequestMapping("/usuarios")
 public class UsuarioController 
 {
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
 	@Autowired
 	private IUsuarioService usS;
 	
@@ -84,9 +88,8 @@ public class UsuarioController
 	}
 	
 	@RequestMapping("/save")
-	public String saveMarca(@Valid Usuario usuario, BindingResult binRes, Model model,
-			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) 
-			throws ParseException	{
+	public String saveMarca(@Valid Usuario usuario, BindingResult binRes, Model model, @RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) throws ParseException	
+	{
 		if (binRes.hasErrors()) 
 		{
 			model.addAttribute("listaTipoUsuarios",iS.list());
@@ -97,33 +100,45 @@ public class UsuarioController
 		} 
 		else 
 		{
-			if (!foto.isEmpty()) {
+			String bcryptPassword = passwordEncoder.encode(usuario.getPassword());
+			usuario.setPassword(bcryptPassword);
+			usuario.setEnabled(true);
+			usuario.setIdUsuario(usuario.getIdUsuario());
+			
+			if (!foto.isEmpty()) 
+			{
 
-				if (usuario.getIdUsuario() > 0 && usuario.getPhotoUsuario()!= null
-						&& usuario.getPhotoUsuario().length() > 0) {
-
+				if (usuario.getIdUsuario() > 0 && usuario.getPhotoUsuario()!= null && usuario.getPhotoUsuario().length() > 0) 
+				{
 					uploadFileService.delete(usuario.getPhotoUsuario());
 				}
 
 				String uniqueFilename = null;
-				try {
+				try 
+				{
 					uniqueFilename = uploadFileService.copy(foto);
-				} catch (IOException e) {
+				} 
+				catch (IOException e) 
+				{
 					e.printStackTrace();
 				}
 
 				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
 				usuario.setPhotoUsuario(uniqueFilename);
 			}
+			
 			int rpta = usS.insert(usuario);
-			if (rpta > 0) {
+			if (rpta > 0) 
+			{
 				model.addAttribute("mensaje", "Ya existe, ingrese un Nuevo Nombre");
 				model.addAttribute("listatipousuarios", iS.list());
 				model.addAttribute("listaubicacion", ubS.list());
 				model.addAttribute("listacargo", cS.list());
 				model.addAttribute("listaservicio", sS.list());
 				return "usuario/usuario";
-			} else {
+			} 
+			else 
+			{
 				model.addAttribute("mensaje", "Se guardo correctamente");
 				status.setComplete();
 			}
@@ -134,26 +149,35 @@ public class UsuarioController
 	}
 	
 	@GetMapping(value = "/uploads/{filename:.+}")
-	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
-
+	public ResponseEntity<Resource> verFoto(@PathVariable String filename) 
+	{
 		Resource recurso = null;
 
-		try {
+		try 
+		{
 			recurso = uploadFileService.load(filename);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
+		} 
+		catch (MalformedURLException e) 
+		{
 			e.printStackTrace();
 		}
-		return ResponseEntity.ok()
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
-				.body(recurso);
+		
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"").body(recurso);
 	}
 	
 	@RequestMapping("/list")
-	public String listUsuarios(Map<String, Object> model) {
+	public String listUsuarios(Map<String, Object> model) 
+	{
 		model.put("listaUsuarios", usS.list());
 		return "usuario/listUsuarios";
-
+	}
+	
+	@RequestMapping("/delete")
+	public String deleteUsuario(Model model, @RequestParam(value="id") Long id)
+	{
+		usS.delete(id);
+		model.addAttribute("listaUsuarios",usS.list());
+		return "usuario/listUsuarios";
 	}
 
 }

@@ -7,7 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
     <link rel="stylesheet" th:href="@{/css/style_register.css}" />
-    
+    <script src="/js/filtros.js"></script>
 </head>
 <body>
     <div class="container">
@@ -17,19 +17,19 @@
             
                 <div class="input-box">
                     <label class="details" for="nombres_completos">Nombres</label>
-                    <input type="text" placeholder="Ingresa tus nombres" required th:field="*{fistnameUsuario}" id="nombres_completos">
+                    <input type="text" onkeypress="return SoloLetras(event);" placeholder="Ingresa tus nombres" required th:field="*{fistnameUsuario}" id="nombres_completos">
                     <div class="alert alert-danger" th:if="${#fields.hasErrors('fistnameUsuario')}" th:errors="*{fistnameUsuario}"></div>
                 </div>
                 
                 <div class="input-box">
                     <label class="details" for="apellidos_completos">Apellidos</label>
-                    <input type="text" placeholder="Ingresa tus apellidos" required th:field="*{lastnameUsuario}" id="apellidos_completos">
+                    <input type="text" onkeypress="return SoloLetras(event);" placeholder="Ingresa tus apellidos" required th:field="*{lastnameUsuario}" id="apellidos_completos">
                 	<div class="alert alert-danger" th:if="${#fields.hasErrors('lastnameUsuario')}" th:errors="*{lastnameUsuario}"></div>
                 </div>
                 
                 <div class="input-box">
                     <label class="details" for="documento_identidad">DNI</label>
-                    <input type="text" placeholder="Ingresa tu dni" required th:field="*{dni}" id="documento_identidad">
+                    <input type="text" onkeypress="return SoloNumeros(event);" maxlength="8" placeholder="Ingresa tu dni" required th:field="*{dni}" id="documento_identidad">
                     <div class="alert alert-danger" th:if="${#fields.hasErrors('*{dni}')}" th:errors="*{dni}"></div>
                 </div>
                 
@@ -44,30 +44,24 @@
                     <input type="password" placeholder="Ingresa tu contraseña" required th:field="*{password}" id="contraseña_primaria">
                     <div class="alert alert-danger" th:if="${#fields.hasErrors('*{password}')}" th:errors="*{password}"></div>
                 </div>
-                
+                  <!-- 
                 <div class="input-box">
                     <label class="details" for="contraseña_secundaria">Confirmar contraseña</label>
                     <input type="password" placeholder="Confirma tu contraseña" id="contraseña_secundaria">
                 </div>
-                
+                   -->         
             </div>
-            
+            <!--  
             <div class="container-nota">
                 <div class="texto"> Estos campos de información deben ser completados obligatoriamente*</div>
             </div>
-            
-            <div class="checkbox">
-                <input type="checkbox" name="checkbox" id="checkbox1" onclick="Enebled(this)">
-                <label for="checkbox1">Habilitar si deseas axuliar a otros usuarios</label>
-                <script src="/js/select.js"></script>
-            </div>
-            
+            -->
             <div class="user-detail">
             
                 <div class="input-box">
                     <label class="details">Servicio</label>
                     <select name="slct1" id="slct1" th:field="*{servicio.idServicio}">
-                    	<option id="opcion_uno" disabled="disabled" th:each="t: ${listaservicio}" th:value="${t.idServicio}" th:text="${t.nameServicio}"
+                    	<option id="opcion_uno" th:each="t: ${listaservicio}" th:value="${t.idServicio}" th:text="${t.nameServicio}"
 									th:selected="(${t.idServicio} == *{servicio.idServicio})"></option>
                     </select>
                 </div>
@@ -75,7 +69,7 @@
                 <div class="input-box">
                     <label class="details">Cargo</label>
                     <select name="slct2" id="slct2" th:field="*{cargo.idCargo}">
-                    	<option id="opcion_dos" disabled="disabled" th:each="t: ${listacargo}" th:value="${t.idCargo}" th:text="${t.nameCargo}"
+                    	<option id="opcion_dos" th:each="t: ${listacargo}" th:value="${t.idCargo}" th:text="${t.nameCargo}"
 									th:selected="(${t.idCargo} == *{cargo.idCargo})"></option>
                     </select>
                 </div>
@@ -84,7 +78,7 @@
             </div>
             
             <div class="container-nota">
-                <div class="texto"> Estos campos son obligatorios para aquellas personas que quieran auxiliar a otras. AVISO: El completar estos cuadros no garantiza la aprovación de una cuenta pues esta estara sujeta a investigación*</div>
+                <div class="texto"> Aquellos usuarios que, al momento de registrarse, no pongan la opción SIN CARGO o SIN SERVICIO estarán sujetos a investigación por lo que puede que no tengan una cuenta instantaneamente*</div>
             </div>
             
             <div class="wrap">
