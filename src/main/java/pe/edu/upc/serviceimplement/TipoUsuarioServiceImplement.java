@@ -43,4 +43,10 @@ public class TipoUsuarioServiceImplement implements ITipoUsuarioService {
 		return cR.findById(idTipoUsuario);
 	}
 
+	@Override
+	public void insertUpdate(TipoUsuario TipoUsuario) {
+		// TODO Auto-generated method stub
+		cR.save(TipoUsuario);
+	}
+
 }
