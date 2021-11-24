@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pe.edu.upc.entities.Usuario;
 
 @Repository
-public interface IUsuarioRepository extends JpaRepository<Usuario, Long>
+public interface IUsuarioRepository extends JpaRepository<Usuario, Integer>
 {
 	public Usuario findByDni(String dni);
 	
