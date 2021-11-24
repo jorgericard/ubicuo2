@@ -56,5 +56,11 @@ public class AlertaServiceImplement implements IAlertaService {
 		// TODO Auto-generated method stub
 		return aR.RescatistaAlertas();
 	}
+
+	@Override
+	public List<String[]> TipoServicioAlerta() {
+		// TODO Auto-generated method stub
+		return aR.TipoServicioAlerta();
+	}
 	
 }
