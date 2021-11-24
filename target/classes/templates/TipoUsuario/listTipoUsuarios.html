@@ -42,6 +42,9 @@
 						<td class="text-center" th:text="${cat.idTipoUsuario}"></td>
 						<td class="text-center" th:text="${cat.usuario.fistnameUsuario}"></td>
 						<td class="text-center"><a th:href="@{/tipousuarios/delete?id=}+${cat.idTipoUsuario}"><i class="iconf fa fa-trash" style="color:red"></i></a></td>
+						<td class="text-center"><a
+							th:href="@{'/tipousuarios/update/'+${cat.idTipoUsuario}}"><i
+								class="iconf fa fa-pencil" style="color: blue"></i></a></td>
 						<td class="text-center" th:text="${cat.rol}"></td>
 					</tr>
 				</tbody>
