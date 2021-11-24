@@ -15,53 +15,41 @@
 </head>
 
 <body>
+
 	<div th:replace="fragments/sidebar :: sidebar" id="panel"
 		class="activepanel"></div>
 
-	<div class="container-fluid">
-		<div class="bg row">
-			<div class="content container">
-				<div class="creportes d-flex justify-content-around">
-					<div class="cproyecto ">
-						<h3 class="tproyecto ">Productos por Venta</h3>
-						<p class="dproyecto ">Lista de la cantidad de veces que un
-							producto fue vendido</p>
-						<a class="lnikp " th:href="@{/cargos/reporte1}">Ver Reporte</a>
-					</div>
-					<div class="cproyecto ">
-						<h3 class="tproyecto ">Contactos por Usuarios</h3>
-						<p class="dproyecto ">Lista de la cantidad de contactos que un
-							usuario tiene registrado</p>
-						<a class="lnikp " th:href="@{/contactos/reporteContacto}">Ver
-							Reporte</a>
-					</div>
-				</div>
+	<div class="bg row">
+		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
+		<div class="content container">
 
-				<div class="creportes d-flex justify-content-around ">
-					<div class="cproyecto ">
-						<h3 class="tproyecto ">Tipo de Servicios por Alertas</h3>
-						<p class="dproyecto ">Lista de Tipos de Servicio con más
-							frecuencia en las Alertas</p>
-						<a class="lnikp " th:href="@{/alertas/reporte5}">Ver Reporte</a>
-					</div>
-					<div class="cproyecto ">
-						<h3 class="tproyecto ">Rescatistas por Alertas</h3>
-						<p class="dproyecto ">Lista de Rescatistas con más frecuencia
-							en las Alertas</p>
-						<a class="lnikp " th:href="@{/alertas/reporte4}">Ver Reporte</a>
-				</div>
-					<!--
-					<div class="cproyecto " style="opacity: 0;">
-						<h3 class="tproyecto ">Reporte 1</h3>
-						<p class="dproyecto ">Info de reporte 1</p>
-						<a class="lnikp ">Ir al repositorio</a>
-					</div>
-					-->
-				</div>
+			<div class="d-flex">
+				<h3 class="title-content">Reporte Tipo de Servicio</h3>
+				<p class="inforeport">Lista de Tipos de Servicio con más frecuencia
+					en las Alertas</p>
 			</div>
+			<table class="table">
+				<thead class="thead-light">
+					<tr>
+						<th scope="col" class="text-center">Tipo de Servicio</th>
+						<th scope="col" class="text-center">Frecuencia en alertas</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="rep : ${listaTipoServicioalertas}">
+						<td class="text-center" th:text="${rep[0]}"></td>
+						<td class="text-center" th:text="${rep[1]}"></td>
+						
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
+	<div th:if="${mensaje}" class="alert alert-danger">
+		<p th:text="${mensaje}"></p>
+	</div>
+
 
 	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>

@@ -50,8 +50,13 @@
 						<h3>Información de Usuario</h3>
 						<ul style="width: 90%;">
 							<li
-								style="margin: 15px 10px 15px 0px; display: flex; justify-content: space-between; width: 100%; font-weight: bold;">Nombre
-								Apeliido: <label th:text="${usuario.nameUsuario}"
+								style="margin: 15px 10px 15px 0px; display: flex; justify-content: space-between; width: 100%; font-weight: bold;">Nombre:
+								<label th:text="${usuario.fistnameUsuario}"
+								style="font-weight: normal"></label>
+							</li>
+							<li
+								style="margin: 15px 10px 15px 0px; display: flex; justify-content: space-between; width: 100%; font-weight: bold;">Apellido:
+								<label th:text="${usuario.lastnameUsuario}"
 								style="font-weight: normal"></label>
 							</li>
 							<li
@@ -59,19 +64,9 @@
 								<label th:text="${usuario.dni}" style="font-weight: normal"></label>
 							</li>
 							<li
-								style="margin: 15px 10px 15px 0px; display: flex; justify-content: space-between; width: 100%; font-weight: bold;">Contraseña:
-								<label th:text="${usuario.password}" style="font-weight: normal"></label>
-							</li>
-							<li
 								style="margin: 15px 10px 15px 0px; display: flex; justify-content: space-between; width: 100%; font-weight: bold;">Correo:
 								<label th:text="${usuario.correo}" style="font-weight: normal"></label>
-							</li>
-							<li
-								style="margin: 15px 10px 15px 0px; display: flex; justify-content: space-between; width: 100%; font-weight: bold;">Tipo
-								Usuario: <label
-								th:text="${usuario.tiposusuario.nameTipoUsuario}"
-								style="font-weight: normal"></label>
-							</li>
+							</li>							
 							<li
 								style="margin: 15px 10px 15px 0px; display: flex; justify-content: space-between; width: 100%; font-weight: bold;">Ubicacion:
 								<label th:text="${usuario.ubicacion.nlongitud}"

@@ -8,7 +8,9 @@ public interface IUsuarioService
 {
 	public Integer insert(Usuario Usuario);
 	
-	public void delete(Long idUsuario);
+	public void delete(int idUsuario);
 	
 	List<Usuario> list();
+	
+	Usuario listarId(int idUsuario);
 }

@@ -43,7 +43,6 @@
 						<th scope="col" class="text-center">Cargo</th>
 						<th scope="col" class="text-center">Servicio</th>
 						<th scope="col" class="text-center">Eliminar</th>
-						<th scope="col" class="text-center">Actualizar</th>
 						<th scope="col" class="text-center">DETALLE</th>
 					</tr>
 				</thead>
@@ -57,14 +56,10 @@
 						<td class="text-center" th:text="${cat.cargo.nameCargo}"></td>
 						<td class="text-center" th:text="${cat.servicio.nameServicio}"></td>
 						<td class="text-center"><a th:href="@{/usuarios/delete?id=}+${cat.idUsuario}"><i class="iconf fa fa-trash" style="color:red"></i></a></td>
-						
-						<!--
 						<td class="text-center" align="center"><a
 							th:href="@{/usuarios/view/} + ${cat.idUsuario}">
 							Ver Detalle
-							</a></td>
-						-->	
-							
+							</a></td>							
 					</tr>
 				</tbody>
 			</table>
