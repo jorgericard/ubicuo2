@@ -18,4 +18,6 @@ public interface IAlertaService {
 	Optional<Alerta> listId(int idAlerta);
 	
 	public List<String[]> RescatistaAlertas();
+	
+	public List<String[]> TipoServicioAlerta();
 }

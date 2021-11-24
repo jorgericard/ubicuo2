@@ -20,4 +20,12 @@ public interface IAlertaRepository extends JpaRepository<Alerta, Integer> {
 			+ "group by u.fistname_usuario, u.lastname_usuario "
 			+ "ORDER BY count(al.id_usuario_res) asc ", nativeQuery = true)
 	public List<String[]> RescatistaAlertas();
+	
+	@Query(value = "SELECT t.name_tiposervicio, count(al.id_usuario_res) "
+			+ "	from tiposervicios t join servicios s on t.id_tiposervicio = s.id_tipo_servicio "
+			+ "	join Usuario u on s.id_servicio = u.id_servicio "
+			+ "	join alertas al on u.id_usuario =  al.id_usuario_res "
+			+ "	group by t.name_tiposervicio "
+			+ "	ORDER BY count(al.id_usuario_res) desc", nativeQuery = true)
+	public List<String[]> TipoServicioAlerta();
 }
