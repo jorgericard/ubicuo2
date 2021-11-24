@@ -74,6 +74,21 @@ public class TipoUsuarioController {
 
 	}
 	
+	@PostMapping("/saveUpdate")
+	public String saveAlertaUpdate(@ModelAttribute("tipousuario") @Valid TipoUsuario tipoUsuario, BindingResult result, Model model, SessionStatus status) 
+		throws Exception {
+		if (result.hasErrors()) {
+			model.addAttribute("listaUsuarios", uService.list());
+			return "tipousuario/tipousuarioUpdate";
+		} else {
+			cS.insertUpdate(tipoUsuario);
+			model.addAttribute("mensaje", "Se guardó correctamente");
+			status.setComplete();
+		}
+		model.addAttribute("tipousuario", new TipoUsuario());
+		return "redirect:/tipousuarios/list";
+	}
+	
 	@RequestMapping("/delete")
 	public String deletetipousuario(Model model, @RequestParam(value="id") Integer id ) 
 	{
@@ -87,11 +102,11 @@ public class TipoUsuarioController {
 		Optional<TipoUsuario> tipousuario = cS.listId(id);
 		if (tipousuario == null) {
 			objRedirect.addFlashAttribute("mensaje", "Ocurrio un error");
-			return "tipousuario/tipousuario";
+			return "tipousuario/tipousuarioUpdate";
 		} else {
 			model.addAttribute("listaUsuarios", uService.list());
 			model.addAttribute("tipousuario", tipousuario);
-			return "tipousuario/tipousuario";
+			return "tipousuario/tipousuarioUpdate";
 		}
 	}
 
