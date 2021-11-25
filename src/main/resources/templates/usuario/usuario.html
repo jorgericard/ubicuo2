@@ -34,11 +34,6 @@
 					th:object="${usuario}" enctype="multipart/form-data">
 					<div class="form-group">
 					
-						<label>ID:</label> <input type="text" class="form-control"
-							readonly th:field="*{idUsuario}"></input>
-							
-						<br/>
-
 						<div class="form-group">
 							<label for="nombres">Nombres:</label> <input type="text" required
 								th:field="*{fistnameUsuario}" class="form-control" id="nombres"></input>
@@ -114,7 +109,7 @@
 							<label for="file" class="">FOTO:</label>
 							<div class="col-sm-6">
 								<input type="file" name="file" class="form-control"  required
-									th:text="${usuario.	photoUsuario}" />
+									th:text="${usuario.photoUsuario}" />
 							</div>
 
 						</div>

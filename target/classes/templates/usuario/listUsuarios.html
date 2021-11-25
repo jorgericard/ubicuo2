@@ -24,12 +24,12 @@
 
 		<div class="content container">
 
-			<!--
+			
 			<div class="d-flex">
 				<h3 class="title-content">Lista de Usuarios</h3>
 				<a th:href="@{/usuarios/new}" class="btn btn-warning">Nuevo</a>
 			</div>
-			-->	
+			
 			<br/>
 			
 			<table class="table">
@@ -44,7 +44,7 @@
 						<th scope="col" class="text-center">Servicio</th>
 						<th scope="col" class="text-center">Ubicacion</th>
 						<th scope="col" class="text-center">Eliminar</th>
-						<th scope="col" class="text-center">DETALLE</th>
+						<!--  <th scope="col" class="text-center">Actualizar</th>-->
 					</tr>
 				</thead>
 				<tbody>
@@ -58,10 +58,14 @@
 						<td class="text-center" th:text="${cat?.servicio?.nameServicio}"></td>
 						<td class="text-center" th:text="${cat?.ubicacion?.nlongitud}"></td>
 						<td class="text-center"><a th:href="@{/usuarios/delete?id=}+${cat.idUsuario}"><i class="iconf fa fa-trash" style="color:red"></i></a></td>
+						<!--<td class="text-center"><a th:href="@{'/usuarios/update/'+${cat.idUsuario}}"><i class="iconf fa fa-pencil-square" style="color:blue"></i></a></td>-->	
+						<!--
 						<td class="text-center" align="center"><a
 							th:href="@{/usuarios/view/} + ${cat.idUsuario}">
 							Ver Detalle
-							</a></td>							
+							</a></td>
+						-->	
+							
 					</tr>
 				</tbody>
 			</table>

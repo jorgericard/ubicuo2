@@ -15,42 +15,36 @@
 </head>
 
 <body>
-	<div th:replace="fragments/sidebar :: sidebar" id="panel"
-		class="activepanel"></div>
-
+	<div th:replace="fragments/sidebar :: sidebar" id="panel" class="activepanel"></div>
+	
 	<div class="container-fluid">
 		<div class="bg row">
 			<div class="content container">
 				<div class="creportes d-flex justify-content-around">
 					<div class="cproyecto ">
-						<h3 class="tproyecto ">Productos por Venta</h3>
-						<p class="dproyecto ">Lista de la cantidad de veces que un
-							producto fue vendido</p>
+						<h3 class="tproyecto ">Cargos por usuarios</h3>
+						<p class="dproyecto ">Este reporte muestra la cantidad de cargos que tiene usan los usuarios</p>
 						<a class="lnikp " th:href="@{/cargos/reporte1}">Ver Reporte</a>
 					</div>
 					<div class="cproyecto ">
 						<h3 class="tproyecto ">Contactos por Usuarios</h3>
-						<p class="dproyecto ">Lista de la cantidad de contactos que un
-							usuario tiene registrado</p>
-						<a class="lnikp " th:href="@{/contactos/reporteContacto}">Ver
-							Reporte</a>
+						<p class="dproyecto ">Lista de la cantidad de contactos que un usuario tiene registrado</p>
+					<a class="lnikp " th:href="@{/contactos/reporteContacto}">Ver Reporte</a>
 					</div>
 				</div>
-
-
+							
+								
 				<div class="creportes d-flex justify-content-around ">
 					<div class="cproyecto ">
-						<h3 class="tproyecto ">Tipo de Servicios por Alertas</h3>
-						<p class="dproyecto ">Lista de Tipos de Servicio con más
-							frecuencia en las Alertas</p>
-						<a class="lnikp " th:href="@{/alertas/reporte5}">Ver Reporte</a>
+						<h3 class="tproyecto ">Proveedores mas frecuentes</h3>
+						<p class="dproyecto ">Lista de proveedores mas frecuentes</p>
+					<!--	<a class="lnikp " th:href="#">Ver Reporte</a>-->
 					</div>
 					<div class="cproyecto ">
-						<h3 class="tproyecto ">Rescatistas por Alertas</h3>
-						<p class="dproyecto ">Lista de Rescatistas con más frecuencia
-							en las Alertas</p>
-						<a class="lnikp " th:href="@{/alertas/reporte4}">Ver Reporte</a>
-				</div>
+						<h3 class="tproyecto ">Categorías Frecuentes</h3>
+						<p class="dproyecto ">Lista de las categorías con más frecuencia en las órdenes</p>
+					<!--	<a class="lnikp " th:href="@#">Ver Reporte</a>-->
+					</div>
 					<!--
 					<div class="cproyecto " style="opacity: 0;">
 						<h3 class="tproyecto ">Reporte 1</h3>
@@ -62,7 +56,7 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
