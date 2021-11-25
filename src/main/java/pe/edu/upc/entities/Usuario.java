@@ -25,7 +25,7 @@ public class Usuario implements Serializable
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Long idUsuario;
+	private int idUsuario;
 	
 	@Column(name = "foto", nullable = true)
 	private String photoUsuario;
@@ -68,11 +68,11 @@ public class Usuario implements Serializable
 	@JoinColumn(name = "idServicio", nullable = true)
 	private Servicio servicio;
 
-	public Long getIdUsuario() {
+	public int getIdUsuario() {
 		return idUsuario;
 	}
 
-	public void setIdUsuario(Long idUsuario) {
+	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 

@@ -25,36 +25,29 @@
 		<div class="content container">
 
 			<div class="d-flex">
-				<h3 class="title-content">Lista de TipoUsuarios</h3>
-				<a th:href="@{/tipousuarios/new}" class="btn btn-warning">Nuevo</a>
+				<h3 class="title-content">Reporte Tipo de Servicio</h3>
+				<p class="inforeport">Lista de Tipos de Servicio con más frecuencia
+					en las Alertas</p>
 			</div>
 			<table class="table">
 				<thead class="thead-light">
 					<tr>
-						<th scope="col" class="text-center">Código</th>
-						<th scope="col" class="text-center">Usuario</th>
-						<th scope="col" class="text-center">Eliminar</th>
-						<th scope="col" class="text-center">Modificar</th>
-						<th scope="col" class="text-center">Rol</th>
+						<th scope="col" class="text-center">Tipo de Servicio</th>
+						<th scope="col" class="text-center">Frecuencia en alertas</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="cat : ${listaTipoUsuarios}">
-						<td class="text-center" th:text="${cat.idTipoUsuario}"></td>
-						<td class="text-center" th:text="${cat.usuario.fistnameUsuario}"></td>
-						<td class="text-center"><a th:href="@{/tipousuarios/delete?id=}+${cat.idTipoUsuario}"><i class="iconf fa fa-trash" style="color:red"></i></a></td>
-						<td class="text-center"><a
-							th:href="@{'/tipousuarios/update/'+${cat.idTipoUsuario}}"><i
-								class="iconf fa fa-pencil" style="color: blue"></i></a></td>
-						<td class="text-center" th:text="${cat.rol}"></td>
+					<tr th:each="rep : ${listaTipoServicioalertas}">
+						<td class="text-center" th:text="${rep[0]}"></td>
+						<td class="text-center" th:text="${rep[1]}"></td>
+						
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<div th:if="${mensaje}" class="alert alert-danger">
-			<p th:text="${mensaje}"></p>
-		</div>
-
+	</div>
+	<div th:if="${mensaje}" class="alert alert-danger">
+		<p th:text="${mensaje}"></p>
 	</div>
 
 

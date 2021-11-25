@@ -25,7 +25,7 @@ public class TipoUsuarioServiceImplement implements ITipoUsuarioService {
 		}
 		return rpta;
 	}
-
+	
 	@Override
 	public List<TipoUsuario> list() {
 		return cR.findAll();
@@ -41,6 +41,12 @@ public class TipoUsuarioServiceImplement implements ITipoUsuarioService {
 	public Optional<TipoUsuario> listId(int idTipoUsuario) {
 		// TODO Auto-generated method stub
 		return cR.findById(idTipoUsuario);
+	}
+
+	@Override
+	public void insertUpdate(TipoUsuario TipoUsuario) {
+		// TODO Auto-generated method stub
+		cR.save(TipoUsuario);
 	}
 
 }

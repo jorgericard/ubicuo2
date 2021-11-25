@@ -140,5 +140,10 @@ public class AlertaController {
 		model.put("listaRescatistaalertas", aS.RescatistaAlertas());
 		return "reports/listAlertas";
 	}
+	@RequestMapping("/reporte5")
+	public String TipoServicioAlerta(Map<String, Object> model) {
+		model.put("listaTipoServicioalertas", aS.TipoServicioAlerta());
+		return "reports/listTipo";
+	}
 
 }
