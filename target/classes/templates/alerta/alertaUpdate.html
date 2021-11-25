@@ -27,7 +27,7 @@
 				<h3></h3>
 			</div>
 			<div class="col-3">
-				<h3>Registrar Alerta Update</h3>
+				<h3>Registrar Alerta</h3>
 			</div>
 			<div class="col-8 frm-registro">
 				<form th:action="@{/alertas/saveUpdate}" method="post"
@@ -53,7 +53,7 @@
 							<label for="UsuarioAux">Usuario Auxiliado:</label> <select
 								class="form-control" name="state" th:field="*{idUsuarioAux}">
 								<option th:value="${null}" selected>--Seleccione--</option>
-								<option th:each="u: ${listaUsuariosAux}"
+								<option th:each="u: ${listaUsuariosAux.?[cargo == null]}"
 									th:value="${u.idUsuario}" th:text="${u.fistnameUsuario + ' ' + u.lastnameUsuario}"></option>
 							</select> <small class="form-text text-danger"
 								th:if="${#fields.hasErrors('idUsuarioAux')}"
@@ -66,8 +66,8 @@
 							<label for="UsuarioRes">Usuario Rescatista:</label> <select
 								class="form-control" name="state" th:field="*{idUsuarioRes}">
 								<option th:value="${null}" selected>--Seleccione--</option>
-								<option th:each="u: ${listaUsuariosRes}"
-									th:value="${u.idUsuario}" th:text="${u.fistnameUsuario + ' ' + u.lastnameUsuario}"></option>
+								<option th:each="u: ${listaUsuariosRes.?[cargo != null]}"
+									th:value="${u.idUsuario}" th:text="${u.fistnameUsuario + ' ' + u.lastnameUsuario + ' - ' + u?.cargo?.nameCargo}"></option>
 							</select> <small class="form-text text-danger"
 								th:if="${#fields.hasErrors('idUsuarioRes')}"
 								th:errors="*{idUsuarioRes}"></small>

@@ -1,6 +1,11 @@
 package pe.edu.upc.controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.TreeMap;
 
 import javax.validation.Valid;
 
@@ -95,6 +100,39 @@ public class TipoUsuarioController {
 		cS.delete(id);
 		model.addAttribute("listaUsuarios", uService.list());
 		return "redirect:/tipousuarios/list";
+	}
+	
+	@RequestMapping("/reporte")
+	public String reportetipousuario(Model model, Map<String,Object> modeltu ) {
+		List<TipoUsuario> lista = cS.list();
+		List<Integer> cantidad = new ArrayList<Integer>();
+		List<String> nombres = new ArrayList<String>();
+		//permite pasar en el formato indicado para el grafico
+		Map<String, Integer> GraphData = new TreeMap<>();
+		
+		for (int i=0; i < lista.size(); i++) {
+			TipoUsuario aux = lista.get(i);
+			nombres.add(aux.getRol());
+		}
+		
+		for (int i=0; i < nombres.size(); i++) {
+			int c = 0;
+			for (int j=0; j < lista.size(); j++) {
+				TipoUsuario aux = lista.get(j);
+				//en java los strings no se comparan correctamente
+				//es un problema de compatibilidad y java para los string usa su propia funcion
+				if(nombres.get(i).equals(aux.getRol()))c++;
+			}
+			cantidad.add(c);
+		}
+		
+		for (int i=0; i < lista.size(); i++) {
+			GraphData.put(nombres.get(i), cantidad.get(i));
+		}
+		
+		model.addAttribute("chartData", GraphData);
+		
+		return "tipousuario/tipousuarioreporte";
 	}
 	
 	@RequestMapping("/update/{id}")
