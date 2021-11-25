@@ -68,7 +68,7 @@
 								class="form-control" name="state" th:field="*{idUsuarioRes}">
 								<option th:value="${null}" selected>--Seleccione--</option>
 								<option th:each="u: ${listaUsuariosRes.?[cargo != null]}"
-									th:value="${u.idUsuario}" th:text="${u.fistnameUsuario + ' ' + u.lastnameUsuario}"></option>
+									th:value="${u.idUsuario}" th:text="${u.fistnameUsuario + ' ' + u.lastnameUsuario + ' - ' + u?.cargo?.nameCargo}"></option>
 							</select>
 							<small class="form-text text-danger" th:if="${#fields.hasErrors('idUsuarioRes')}"
                                     th:errors="*{idUsuarioRes}"></small>
