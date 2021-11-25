@@ -35,6 +35,7 @@
 						<th scope="col" class="text-center">Estado</th>
 						<th scope="col" class="text-center">Usuario Auxiliado</th>
 						<th scope="col" class="text-center">Usuario Rescatista</th>
+						<th scope="col" class="text-center">Servicio</th>
 						<th scope="col" class="text-center">Fecha</th>
 						<th scope="col" class="text-center">Operación</th>
 						<th scope="col" class="text-center">Operación</th>
@@ -46,6 +47,7 @@
 						<td class="text-center" th:text="${cat.cEstados.nameEstados}"></td>
 						<td class="text-center" th:text="${cat.idUsuarioAux.fistnameUsuario + ' ' + cat.idUsuarioAux.lastnameUsuario}"></td>
 						<td class="text-center" th:text="${cat.idUsuarioRes.fistnameUsuario + ' ' + cat.idUsuarioRes.lastnameUsuario + ' - ' + cat.idUsuarioRes.cargo.nameCargo}"></td>
+						<td class="text-center" th:text="${cat.idUsuarioRes.servicio.nameServicio}"></td>
 						<td class="text-center" th:text="${#dates.format(cat.fecha, 'dd-MMM-yyyy HH:mm:ss')}"></td>
 						<td class="text-center"><a
 							th:href="@{/alertas/delete?id=}+${cat.idAlerta}"><i
