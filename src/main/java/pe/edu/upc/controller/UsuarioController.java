@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.ParseException;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -18,13 +19,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 
 import pe.edu.upc.entities.Usuario;
 import pe.edu.upc.serviceinterface.ICargoService;
@@ -148,6 +147,67 @@ public class UsuarioController
 		
 	}
 	
+	@RequestMapping("/saveUpdate")
+	public String saveCambios(@Valid Usuario usuario, BindingResult binRes, Model model, @RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) throws ParseException	
+	{
+		if (binRes.hasErrors()) 
+		{
+			model.addAttribute("listaTipoUsuarios",iS.list());
+			model.addAttribute("listaUbicacion",ubS.list());
+			model.addAttribute("listaCargo",cS.list());
+			model.addAttribute("listaServicio",sS.list());
+			return "usuario/usuario";
+		} 
+		else 
+		{
+			String bcryptPassword = passwordEncoder.encode(usuario.getPassword());
+			usuario.setPassword(bcryptPassword);
+			usuario.setEnabled(true);
+			usuario.setIdUsuario(usuario.getIdUsuario());
+			
+			if (!foto.isEmpty()) 
+			{
+
+				if (usuario.getIdUsuario() > 0 && usuario.getPhotoUsuario()!= null && usuario.getPhotoUsuario().length() > 0) 
+				{
+					uploadFileService.delete(usuario.getPhotoUsuario());
+				}
+
+				String uniqueFilename = null;
+				try 
+				{
+					uniqueFilename = uploadFileService.copy(foto);
+				} 
+				catch (IOException e) 
+				{
+					e.printStackTrace();
+				}
+
+				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
+				usuario.setPhotoUsuario(uniqueFilename);
+			}
+			
+			int rpta = usS.insert(usuario);
+			if (rpta > 0) 
+			{
+				model.addAttribute("mensaje", "Ya existe, ingrese un Nuevo Nombre");
+				model.addAttribute("listatipousuarios", iS.list());
+				model.addAttribute("listaubicacion", ubS.list());
+				model.addAttribute("listacargo", cS.list());
+				model.addAttribute("listaservicio", sS.list());
+				return "usuario/usuario";
+			} 
+			else 
+			{
+				model.addAttribute("mensaje", "Se guardo correctamente");
+				status.setComplete();
+			}
+		}
+		model.addAttribute("usuario", new Usuario());
+		return "redirect:/usuarios/list";
+		
+	}
+	
 	@GetMapping(value = "/uploads/{filename:.+}")
 	public ResponseEntity<Resource> verFoto(@PathVariable String filename) 
 	{
@@ -188,11 +248,12 @@ public class UsuarioController
 	}
 	
 	@GetMapping(value = "/view/{id}")
-	public String view(@PathVariable(value = "id") int id, Map<String, Object> model, RedirectAttributes flash) {
-
+	public String view(@PathVariable(value = "id") int id, Map<String, Object> model, RedirectAttributes flash) 
+	{
 		Usuario usuario = usS.listarId(id);
 
-		if (usuario == null) {
+		if (usuario == null) 
+		{
 			flash.addFlashAttribute("error", "El producto no existe en la base de datos");
 			return "usuario/listUsuarios";
 		}
@@ -202,5 +263,26 @@ public class UsuarioController
 
 		return "usuario/ver";
 	}
-
+	
+	@RequestMapping("/update/{id}")
+	public String irUpdate(@PathVariable int id, Model model, RedirectAttributes objRedirect)
+	{
+		Optional<Usuario> usuario=usS.listId(id);
+		
+		if(usuario==null)
+		{
+			objRedirect.addFlashAttribute("mensaje","Ocurrió un error");
+			return "usuario/usuarioUpdate";
+		}
+		else
+		{
+			model.addAttribute("listatipousuarios", iS.list());
+			model.addAttribute("listaubicacion", ubS.list());
+			model.addAttribute("listacargo", cS.list());
+			model.addAttribute("listaservicio", sS.list());
+			model.addAttribute("usuario",usuario);
+			return "usuario/usuarioUpdate";
+		}
+		
+	}
 }
