@@ -54,7 +54,7 @@
 							<label for="UsuarioAux">Usuario Auxiliado:</label> <select
 								class="form-control" name="state" th:field="*{idUsuarioAux}">
 								<option th:value="${null}" selected>--Seleccione--</option>
-								<option th:each="u: ${listaUsuariosAux}"
+								<option th:each="u: ${listaUsuariosAux.?[cargo == null]}"
 									th:value="${u.idUsuario}" th:text="${u.fistnameUsuario + ' ' + u.lastnameUsuario}"></option>
 							</select>
 							<small class="form-text text-danger" th:if="${#fields.hasErrors('idUsuarioAux')}"
@@ -67,7 +67,7 @@
 							<label for="UsuarioRes">Usuario Rescatista:</label> <select
 								class="form-control" name="state" th:field="*{idUsuarioRes}">
 								<option th:value="${null}" selected>--Seleccione--</option>
-								<option th:each="u: ${listaUsuariosRes}"
+								<option th:each="u: ${listaUsuariosRes.?[cargo != null]}"
 									th:value="${u.idUsuario}" th:text="${u.fistnameUsuario + ' ' + u.lastnameUsuario}"></option>
 							</select>
 							<small class="form-text text-danger" th:if="${#fields.hasErrors('idUsuarioRes')}"
