@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Pattern;
 
 @Entity
@@ -32,22 +33,22 @@ public class Usuario implements Serializable
 	
 	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Usuario no puede contener un número")
 	@Pattern(regexp = "[^0-9]+", message = "El nombre del Usuario no puede contener un número")
-	@Column(name = "fistnameUsuario", length = 35, nullable = true)
+	@Column(name = "fistnameUsuario", length = 35, nullable = false)
 	private String fistnameUsuario;
 	
 	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Usuario no puede contener un número")
 	@Pattern(regexp = "[^0-9]+", message = "El nombre del Usuario no puede contener un número")
-	@Column(name = "lastnameUsuario", length = 35, nullable = true)
+	@Column(name = "lastnameUsuario", length = 35, nullable = false)
 	private String lastnameUsuario;
 	
-	@Column(name = "password", length = 255, nullable = true)
+	@Column(name = "password", length = 255, nullable = false)
 	private String password;
 	
-	@Column(name = "correo", length = 35, nullable = true)
+	@Column(name = "correo", length = 35, nullable = false)
 	private String correo;
 	
 	@Pattern(regexp = "[^0]\\d{7}", message = "Ingrese DNI correctamente.")
-	@Column(name = "dni", nullable = true)
+	@Column(name = "dni", nullable = false)
 	private String dni;
 	
 	private Boolean enabled;

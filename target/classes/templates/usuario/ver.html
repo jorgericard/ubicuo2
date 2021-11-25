@@ -69,17 +69,17 @@
 							</li>							
 							<li
 								style="margin: 15px 10px 15px 0px; display: flex; justify-content: space-between; width: 100%; font-weight: bold;">Ubicacion:
-								<label th:text="${usuario.ubicacion.nlongitud}"
+								<label th:text="${usuario?.ubicacion?.nlongitud}"
 								style="font-weight: normal"></label>
 							</li>
 							<li
 								style="margin: 15px 10px 15px 0px; display: flex; justify-content: space-between; width: 100%; font-weight: bold;">Cargo:
-								<label th:text="${usuario.cargo.nameCargo}"
+								<label th:text="${usuario?.cargo?.nameCargo}"
 								style="font-weight: normal"></label>
 							</li>
 							<li
 								style="margin: 15px 10px 15px 0px; display: flex; justify-content: space-between; width: 100%; font-weight: bold;">Servicio:
-								<label th:text="${usuario.servicio.nameServicio}"
+								<label th:text="${usuario?.servicio?.nameServicio}"
 								style="font-weight: normal"></label>
 							</li>
 						</ul>

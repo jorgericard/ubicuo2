@@ -42,6 +42,7 @@
 						<th scope="col" class="text-center">DNI</th>
 						<th scope="col" class="text-center">Cargo</th>
 						<th scope="col" class="text-center">Servicio</th>
+						<th scope="col" class="text-center">Ubicacion</th>
 						<th scope="col" class="text-center">Eliminar</th>
 						<th scope="col" class="text-center">DETALLE</th>
 					</tr>
@@ -53,8 +54,9 @@
 						<td class="text-center" th:text="${cat.lastnameUsuario}"></td>
 						<td class="text-center" th:text="${cat.correo}"></td>
 						<td class="text-center" th:text="${cat.dni}"></td>
-						<td class="text-center" th:text="${cat.cargo.nameCargo}"></td>
-						<td class="text-center" th:text="${cat.servicio.nameServicio}"></td>
+						<td class="text-center" th:text="${cat?.cargo?.nameCargo}"></td>
+						<td class="text-center" th:text="${cat?.servicio?.nameServicio}"></td>
+						<td class="text-center" th:text="${cat?.ubicacion?.nlongitud}"></td>
 						<td class="text-center"><a th:href="@{/usuarios/delete?id=}+${cat.idUsuario}"><i class="iconf fa fa-trash" style="color:red"></i></a></td>
 						<td class="text-center" align="center"><a
 							th:href="@{/usuarios/view/} + ${cat.idUsuario}">
