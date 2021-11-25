@@ -79,28 +79,28 @@
 
 				<div class="input-box">
 					<label class="details">Servicio</label> <select name="slct1"
-						id="slct1" th:field="*{servicio.idServicio}">
+						id="slct1" th:field="*{servicio}">
+						<option th:value="${null}" selected>--Seleccione--</option>
 						<option id="opcion_uno" th:each="t: ${listaservicio}"
-							th:value="${t.idServicio}" th:text="${t.nameServicio}"
-							th:selected="(${t.idServicio} == *{servicio.idServicio})"></option>
+							th:value="${t.idServicio}" th:text="${t.nameServicio}"></option>
 					</select>
 				</div>
 
 				<div class="input-box">
 					<label class="details">Cargo</label> <select name="slct2"
-						id="slct2" th:field="*{cargo.idCargo}">
+						id="slct2" th:field="*{cargo}">
+						<option th:value="${null}" selected>--Seleccione--</option>
 						<option id="opcion_dos" th:each="t: ${listacargo}"
-							th:value="${t.idCargo}" th:text="${t.nameCargo}"
-							th:selected="(${t.idCargo} == *{cargo.idCargo})"></option>
+							th:value="${t.idCargo}" th:text="${t.nameCargo}"></option>
 					</select>
 				</div>
 
 				<div class="input-box">
 					<label class="details">Ubicacion</label> <select name="slct3"
-						id="slct3" th:field="*{ubicacion.idUbicacion}">
+						id="slct3" th:field="*{ubicacion}">
+						<option th:value="${null}" selected>--Seleccione--</option>
 						<option id="opcion_tres" th:each="t: ${listaubicacion}"
-							th:value="${t.idUbicacion}" th:text="${t.nlongitud}"
-							th:selected="(${t.idUbicacion} == *{ubicacion.idUbicacion})"></option>
+							th:value="${t.idUbicacion}" th:text="${t.nlongitud}"></option>
 					</select>
 				</div>
 

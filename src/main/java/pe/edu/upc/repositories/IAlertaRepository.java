@@ -12,7 +12,7 @@ import pe.edu.upc.entities.Usuario;
 
 @Repository
 public interface IAlertaRepository extends JpaRepository<Alerta, Integer> {
-	@Query("select count(a.idUsuarioRes) from Alerta a where a.idUsuarioRes=:name")
+	@Query("select count(a.idUsuarioRes) from Alerta a where a.idUsuarioRes=:name and a.cEstados in (1)")
 	public int buscarAlerta(@Param("name") Usuario nombre);
 	
 	@Query(value = "SELECT u.fistname_usuario, u.lastname_usuario, count(al.id_usuario_res) "
